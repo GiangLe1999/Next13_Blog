@@ -1,0 +1,45 @@
+{
+  "siteTitle": "Blog của River Lee",
+  "siteDescription": "Những bài blog cho các lập tình viên. Chủ đề chính là React, Next, CSS, Animation, và nhiều công nghệ khác nữa!",
+  "navigation": [
+    { "title": "Trang chủ", "link": "/vi/" },
+    { "title": "Giới thiệu", "link": "/vi/about" },
+    { "title": "Danh mục", "link": "/vi/categories" },
+    { "title": "Liên hệ", "link": "/vi/contact" }
+  ],
+  "overall": {
+    "title": "Xin chào, tôi là",
+    "subTitle1": "Tôi là nhà phát triển web và là IT blogger.",
+    "subTitle2": "Tôi thích làm việc với các open source và viết về những gì tôi học được."
+  },
+  "categories": {
+    "subTitle": "Những gì tôi đã viết",
+    "title": "Danh mục nổi bật"
+  },
+  "post": {
+    "subTitle": "ĐỌC NGAY",
+    "title": "Bài viết mới nhất",
+    "description": "Tổng cộng tôi đã viết 171 bài về kiến thức IT trên internet. Trang web đã bao gồm hầu như trong số chúng. Hy vọng rằng bạn sẽ hài lòng với những bài viết này và cảm thấy chúng bổ ích!"
+  },
+  "projects": {
+    "subTitle": "Những gì tôi đã làm",
+    "title": "Dự án của tôi",
+    "description": "Các dự án này thể hiện các kỹ năng và kinh nghiệm của tôi thông qua các tình huống thực tế. Mỗi dự án được mô tả ngắn gọn kèm theo đường liên kết đến Github và bản live demo. Qua đây, bạn sẽ nhận ra khả năng của tôi trong việc giải quyết các vấn đề phức tạp, làm việc với các công nghệ khác nhau và quản lý dự án 1 cách hiệu quả."
+  },
+  "ctaCard": {
+    "title": "Khám phá thế giới CNTT cùng tôi!",
+    "description": "Hãy đăng ký blog của tôi để có cái nhìn sâu hơn về mọi khía cạnh của lĩnh vực CNTT trong thế giới hiện đại!",
+    "button": "Đăng ký",
+    "placeholder": "Email của bạn",
+    "followText": "Theo dõi tôi trên MXH"
+  },
+  "footer": {
+    "address": "Địa chỉ",
+    "postalCode": "Mã bưu điện",
+    "tel": "Điện thoại",
+    "email": "Email",
+    "followText": "Theo dõi tôi trên",
+    "rightsText": "Tất cả các quyền được bảo lưu",
+    "creatorText": "Được tạo ra từ sự tâm huyết của"
+  }
+}

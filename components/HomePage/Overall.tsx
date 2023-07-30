@@ -1,10 +1,13 @@
 import { FC } from "react";
 import ScrollIcon from "../Common/ScrollIcon";
 import Container from "../Layout/Container";
+import { OverallDictionary } from "./Hero";
 
-interface Props {}
+interface Props {
+  dictionary: OverallDictionary;
+}
 
-const Overall: FC<Props> = (props): JSX.Element => {
+const Overall: FC<Props> = ({ dictionary }) => {
   return (
     <Container
       className="absolute inset-0 top-[120px]
@@ -18,14 +21,13 @@ const Overall: FC<Props> = (props): JSX.Element => {
 
       <div>
         <h1 className="heroHeadText">
-          <span className="font-medium">Hi, I&apos;m </span>
+          <span className="font-medium">{dictionary.title} </span>
           <span className="text-quaternary">River Lee</span>
         </h1>
 
-        <p className="heroSubText">
-          I&rsquo;m a website developer and a blog writer.
-          <br className="sm:block hidden" /> I love working with open source
-          technologies and writing about what I learn.
+        <p className="heroSubText flex flex-col">
+          <span>{dictionary.subTitle1}</span>
+          <span>{dictionary.subTitle2}</span>
         </p>
       </div>
 

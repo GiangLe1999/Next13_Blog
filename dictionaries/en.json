@@ -1,0 +1,45 @@
+{
+  "siteTitle": "River Lee's Blog",
+  "siteDescription": "Blog posts for developers. Focus on React, Next, CSS, Animation, and more!",
+  "navigation": [
+    { "title": "Home", "link": "/en/" },
+    { "title": "About", "link": "/en/about" },
+    { "title": "Categories", "link": "/en/categories" },
+    { "title": "Contact", "link": "/en/contact" }
+  ],
+  "overall": {
+    "title": "Hi, I'm",
+    "subTitle1": "Iam a website developer and a blog writer.",
+    "subTitle2": "I love working with open source technologies and writing about what I learn."
+  },
+  "categories": {
+    "subTitle": "WHAT I HAVE WRITTEN SO FAR",
+    "title": "Top Categories"
+  },
+  "post": {
+    "subTitle": "READ NOW",
+    "title": "Newest Posts",
+    "description": "In total I've written 171 tutorials and posts on internet. This site is a collection of most of the them. Hope that you will be satisfied with these posts"
+  },
+  "projects": {
+    "subTitle": "MY WORK",
+    "title": "Projects",
+    "description": "Following projects showcases my skills and experience through real-world examples of my work. Each project is briefly described with links to code repositories and live demos in it. It reflects my ability to solve complex problems, work with different technologies, and manage projects effectively."
+  },
+  "ctaCard": {
+    "title": "Explore the IT World with me!",
+    "description": "Let’s subscribe my blog to take a closer look at the every aspect of the IT sector in today’s world!",
+    "button": "Subscribe",
+    "placeholder": "Your email",
+    "followText": "Follow me on socials"
+  },
+  "footer": {
+    "address": "Address",
+    "postalCode": "Postal Code",
+    "tel": "Tel",
+    "email": "Email",
+    "followText": "Follow me on",
+    "rightsText": "All Rights Reserved",
+    "creatorText": "Made with love by"
+  }
+}

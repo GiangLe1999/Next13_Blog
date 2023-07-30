@@ -1,21 +1,22 @@
 "use client";
-import { FC } from "react";
-import { motion } from "framer-motion";
 
-import { textVariant } from "@/utils/motion";
-import SectionWrapper from "@/hoc/SectionWrapper";
+import { FC } from "react";
+import Link from "next/link";
+
 import { categories } from "@/config/site";
 import BallCanvas from "./BallCanvas";
-import Link from "next/link";
 import ScrollIcon from "../Common/ScrollIcon";
 import Title from "../Common/Title";
+import SectionWrapper from "../Common/SectionWrapper";
 
-interface Props {}
+interface Props {
+  dictionary: { title: string; subTitle: string };
+}
 
-const Categories: FC<Props> = (props): JSX.Element => {
+const Categories: FC<Props> = ({ dictionary }): JSX.Element => {
   return (
-    <>
-      <Title title="Top Categories" subTitle="What I have written so far" />
+    <SectionWrapper idName="categories">
+      <Title title={dictionary.title} subTitle={dictionary.subTitle} />
 
       <div className="flex flex-row flex-wrap justify-center gap-10 mt-10">
         {categories.map((category) => (
@@ -35,8 +36,8 @@ const Categories: FC<Props> = (props): JSX.Element => {
       </div>
 
       <ScrollIcon idName="posts" className="bottom-10 left-16" />
-    </>
+    </SectionWrapper>
   );
 };
 
-export default SectionWrapper(Categories, "categories");
+export default Categories;

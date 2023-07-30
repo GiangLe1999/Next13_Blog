@@ -31,7 +31,14 @@ module.exports = {
       transitionProperty: {
         left: "left",
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: "100ch",
+          },
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };

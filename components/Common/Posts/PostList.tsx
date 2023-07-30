@@ -5,14 +5,21 @@ import PostCard from "./PostCard";
 interface Props {
   posts: Post[];
   layout?: "vertical" | "horizontal";
+  locale: string;
 }
 
-const PostList: FC<Props> = ({ posts, layout = "vertical" }): JSX.Element => {
+const PostList: FC<Props> = ({
+  posts,
+  layout = "vertical",
+  locale,
+}): JSX.Element => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-      {posts.map((post) => (
-        <PostCard post={post} key={post.id} layout={layout} />
-      ))}
+      {posts.map((post) => {
+        return (
+          <PostCard post={post} key={post.id} layout={layout} locale={locale} />
+        );
+      })}
     </div>
   );
 };

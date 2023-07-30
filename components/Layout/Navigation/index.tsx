@@ -1,18 +1,23 @@
 "use client";
-import Link from "next/link";
 import Image from "next/image";
 
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { menu, close } from "@/public/assets";
 import Container from "../Container";
 import NavLinks from "./NavLinks";
 import ThemeButton from "./ThemeButton";
 import Logo from "@/components/Common/Logo";
+import { useDictionary } from "@/hook/useDictionary";
+import LangSwitcher from "./LangSwitcher";
 
-interface Props {}
+interface Props {
+  locale: string;
+}
 
-const Navigation: FC<Props> = (props): JSX.Element => {
+const Navigation: FC<Props> = ({ locale }): JSX.Element => {
   const [toggle, setToggle] = useState(false);
+  const dictionary = useDictionary(locale);
+
   return (
     <nav
       className="py-4 w-full flex items-center fixed top-0 z-20 header-gradient
@@ -25,14 +30,17 @@ const Navigation: FC<Props> = (props): JSX.Element => {
             <Logo />
 
             {/* Nav links */}
-            <NavLinks />
+            <NavLinks navDictionary={dictionary?.navigation} />
           </div>
 
           <div className="flex flex-1 justify-end items-center space-x-5">
-            {/* Action button */}
+            {/* Theme */}
             <div className="">
               <ThemeButton />
             </div>
+
+            {/* Language */}
+            <LangSwitcher locale={locale} />
 
             {/* Nav links on mobile */}
             <div className="lg:hidden">
@@ -49,7 +57,11 @@ const Navigation: FC<Props> = (props): JSX.Element => {
                   toggle ? "flex" : "hidden"
                 } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
               >
-                <NavLinks mobile setToggle={setToggle} />
+                <NavLinks
+                  navDictionary={dictionary?.navigation}
+                  mobile
+                  setToggle={setToggle}
+                />
               </div>
             </div>
           </div>

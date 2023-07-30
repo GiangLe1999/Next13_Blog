@@ -5,13 +5,21 @@ import { FC } from "react";
 import ComputersCanvas from "./ComputersCanvas";
 import Overall from "./Overall";
 
-interface Props {}
+export type OverallDictionary = {
+  title: string;
+  subTitle1: string;
+  subTitle2: string;
+};
 
-const Hero: FC<Props> = (props): JSX.Element => {
+interface Props {
+  dictionary: OverallDictionary;
+}
+
+const Hero: FC<Props> = ({ dictionary }): JSX.Element => {
   return (
     <section className="relative w-full h-screen">
       {/* Overall */}
-      <Overall />
+      <Overall dictionary={dictionary} />
 
       {/* 3D Model */}
       <ComputersCanvas />

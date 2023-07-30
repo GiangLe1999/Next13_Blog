@@ -1,15 +1,22 @@
 import { Dispatch, FC, SetStateAction } from "react";
 import { usePathname } from "next/navigation";
 
-import { navLinks } from "@/config/site";
 import Link from "next/link";
 
 interface Props {
   mobile?: boolean;
   setToggle?: Dispatch<SetStateAction<boolean>>;
+  navDictionary?: {
+    title: string;
+    link: string;
+  }[];
 }
 
-const NavLinks: FC<Props> = ({ mobile, setToggle }): JSX.Element => {
+const NavLinks: FC<Props> = ({
+  mobile,
+  setToggle,
+  navDictionary,
+}): JSX.Element => {
   const pathName = usePathname();
 
   return (
@@ -20,7 +27,7 @@ const NavLinks: FC<Props> = ({ mobile, setToggle }): JSX.Element => {
           : "hidden lg:flex flex-row gap-4"
       }`}
     >
-      {navLinks.map((link, index) => (
+      {navDictionary?.map((link, index) => (
         <li key={index} onClick={() => setToggle && setToggle(false)}>
           <Link
             className={`${

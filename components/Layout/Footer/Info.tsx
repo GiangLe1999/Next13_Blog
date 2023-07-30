@@ -1,38 +1,49 @@
 import siteConfig from "@/config/site";
+import { Dictionary } from "@/types/collection";
 import Link from "next/link";
 import { FC } from "react";
 
-interface Props {}
+interface Props {
+  dictionary: {
+    address: string;
+    postalCode: string;
+    tel: string;
+    email: string;
+    followText: string;
+    rightsText: string;
+    creatorText: string;
+  };
+}
 
-const Info: FC<Props> = (props): JSX.Element => {
+const Info: FC<Props> = ({ dictionary }): JSX.Element => {
   return (
     <div className="space-y-2">
       <div className="max-w-xs">
-        <span className="info-title">Address: </span>
+        <span className="info-title">{dictionary.address}: </span>
         <span className="info-detail">{siteConfig.address}</span>
       </div>
 
       <div className="max-w-xs">
-        <span className="info-title">Postal Code: </span>
+        <span className="info-title">{dictionary.postalCode}: </span>
         <span className="info-detail">{siteConfig.postalCode}</span>
       </div>
 
       <div className="max-w-xs">
-        <span className="info-title">Tel: </span>
+        <span className="info-title">{dictionary.tel}: </span>
         <Link className="info-detail" href={"tel:" + siteConfig.tel}>
           {siteConfig.tel}
         </Link>
       </div>
 
       <div className="max-w-xs">
-        <span className="info-title">Email: </span>
+        <span className="info-title">{dictionary.email}: </span>
         <Link className="info-detail" href={"mailto:" + siteConfig.email}>
           {siteConfig.email}
         </Link>
       </div>
 
       <div className="flex gap-1 items-center">
-        <span className="info-title">Follow me on: </span>
+        <span className="info-title">{dictionary.followText}: </span>
         <div className="flex items-center gap-1 dark:text-neutral-600 text-neutral-300">
           {siteConfig.socialsLinks.map((social, index) => (
             <Link

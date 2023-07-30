@@ -1,4 +1,4 @@
-import { Right, Right2 } from "@/icons";
+import { Right, Right2 } from "@/components/Assets/Icons";
 import { getReadingTime, getRelativeDate } from "@/lib/helpers";
 import { Post } from "@/types/collection";
 import { FC } from "react";
@@ -8,9 +8,10 @@ const delays = [50, 100, 150];
 interface Props {
   post: Post;
   isPostPage?: Boolean;
+  locale: string;
 }
 
-const PostMetas: FC<Props> = ({ post, isPostPage }): JSX.Element => {
+const PostMetas: FC<Props> = ({ post, isPostPage, locale }): JSX.Element => {
   return (
     <div className="space-y-2">
       {/* Tags */}
@@ -25,10 +26,10 @@ const PostMetas: FC<Props> = ({ post, isPostPage }): JSX.Element => {
         </div>
 
         <div className="post-dot" />
-        <div>{getReadingTime(post.body)}</div>
+        <div>{getReadingTime(post.body, locale)}</div>
 
         <div className="post-dot" />
-        <div>{getRelativeDate(post.date_created)}</div>
+        <div>{getRelativeDate(post.date_created, locale)}</div>
       </div>
 
       <div className="space-y-3">
@@ -55,7 +56,7 @@ const PostMetas: FC<Props> = ({ post, isPostPage }): JSX.Element => {
         {!isPostPage && (
           <div className="flex items-center">
             <span className="group-hover:text-quaternary text-secondary text-sm font-semibold">
-              Read More&nbsp;
+              {locale === "en" ? "Read More" : "Đọc Thêm"}&nbsp;
             </span>
             <Right className="w-4 h-4 text-quaternary group-hover:opacity-100 opacity-0" />
             {delays.map((delay, index) => (

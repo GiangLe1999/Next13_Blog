@@ -4,7 +4,7 @@ import {
   PinterestShare,
   RedditShare,
   TwitterShare,
-} from "@/icons";
+} from "@/components/Assets/Icons";
 import { FC } from "react";
 
 interface Props {

@@ -6,7 +6,7 @@ import { OrbitControls, useGLTF } from "@react-three/drei";
 interface Props {}
 
 const Earth: FC<Props> = (props): JSX.Element => {
-  const earth = useGLTF("/planet/scene.gltf");
+  const earth = useGLTF("/en/planet/scene.gltf");
   return (
     <primitive
       object={earth.scene}

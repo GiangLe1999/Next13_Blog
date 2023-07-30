@@ -1,5 +1,5 @@
 import useTheme from "@/hook/useTheme";
-import { Moon, Sun } from "@/icons";
+import { Moon, Sun } from "@/components/Assets/Icons";
 import { FC, useEffect, useState } from "react";
 
 interface Props {}

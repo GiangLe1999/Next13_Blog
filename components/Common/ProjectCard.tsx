@@ -5,7 +5,7 @@ import { fadeIn } from "@/utils/motion";
 import { Tilt } from "react-tilt";
 import NextImage from "./NextImage";
 import Link from "next/link";
-import { NewTab } from "@/icons";
+import { NewTab } from "@/components/Assets/Icons";
 
 interface Props {
   project: Project;

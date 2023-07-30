@@ -1,32 +1,28 @@
 "use client";
 
 import { FC } from "react";
-import { motion } from "framer-motion";
 
-import { fadeIn, textVariant } from "@/utils/motion";
-import SectionWrapper from "@/hoc/SectionWrapper";
 import { projects } from "@/config/site";
 import ProjectCard from "../Common/ProjectCard";
 import Title from "../Common/Title";
+import SectionWrapper from "../Common/SectionWrapper";
+import Subtitle from "../Common/Subtitle";
 
-interface Props {}
+interface Props {
+  dictionary: {
+    title: string;
+    subTitle: string;
+    description: string;
+  };
+}
 
-const Projects: FC<Props> = (props): JSX.Element => {
+const Projects: FC<Props> = ({ dictionary }): JSX.Element => {
   return (
-    <>
-      <Title subTitle="My work" title="Projects" />
+    <SectionWrapper idName="projects">
+      <Title subTitle={dictionary.subTitle} title={dictionary.title} />
 
       <div className="w-full flex">
-        <motion.p
-          variants={fadeIn("", "", 0.1, 0.1)}
-          className="sectionDescription"
-        >
-          Following projects showcases my skills and experience through
-          real-world examples of my work. Each project is briefly described with
-          links to code repositories and live demos in it. It reflects my
-          ability to solve complex problems, work with different technologies,
-          and manage projects effectively.
-        </motion.p>
+        <Subtitle content={dictionary.description} />
       </div>
 
       <div className="mt-8 flex flex-wrap gap-7">
@@ -34,8 +30,8 @@ const Projects: FC<Props> = (props): JSX.Element => {
           <ProjectCard key={index} index={index} project={post} />
         ))}
       </div>
-    </>
+    </SectionWrapper>
   );
 };
 
-export default SectionWrapper(Projects, "posts");
+export default Projects;

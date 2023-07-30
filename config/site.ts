@@ -25,7 +25,7 @@ import {
   tripguide,
 } from "@/public/assets";
 import { FC } from "react";
-import { Facebook, Github, Linkedin, Twitter } from "@/icons";
+import { Facebook, Github, Linkedin, Twitter } from "@/components/Assets/Icons";
 
 interface IconType {
   className?: string;
@@ -69,34 +69,6 @@ const siteConfig: Siteconfig = {
 };
 
 export default siteConfig;
-
-interface NavLink {
-  link: string;
-  title: string;
-}
-
-export const navLinks: NavLink[] = [
-  {
-    link: "/",
-    title: "Home",
-  },
-  {
-    link: "/about",
-    title: "About",
-  },
-  {
-    link: "/categories",
-    title: "Categories",
-  },
-  {
-    link: "/projects",
-    title: "Projects",
-  },
-  {
-    link: "/contact",
-    title: "Contact",
-  },
-];
 
 export interface Service {
   title: string;

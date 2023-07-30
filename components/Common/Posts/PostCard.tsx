@@ -8,12 +8,14 @@ interface Props {
   post: Post;
   layout?: "vertical" | "horizontal";
   reverse?: boolean;
+  locale: string;
 }
 
 const PostCard: FC<Props> = ({
   post,
   layout = "horizontal",
   reverse = false,
+  locale,
 }): JSX.Element => {
   return (
     <Link
@@ -22,7 +24,7 @@ const PostCard: FC<Props> = ({
           ? "grid grid-cols-1 lg:grid-cols-2 items-center gap-5 lg:gap-10"
           : "space-y-5"
       }  group`}
-      href={"/post/" + post.slug}
+      href={`/${locale}/post/${post.slug}`}
     >
       {/* Post image */}
       <div
@@ -30,11 +32,17 @@ const PostCard: FC<Props> = ({
           reverse ? "lg:order-last" : ""
         }`}
       >
-        <NextImage src={post.image} alt={post.title} className="rounded-md" />
+        <NextImage
+          src={
+            process.env.NEXT_PUBLIC_ASSETS_URL + post.image + "?key=optimised"
+          }
+          alt={post.title}
+          className="rounded-md"
+        />
       </div>
 
       {/* Tag & Title & Description */}
-      <PostMetas post={post} />
+      <PostMetas post={post} locale={locale} />
     </Link>
   );
 };

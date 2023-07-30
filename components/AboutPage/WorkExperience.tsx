@@ -2,18 +2,18 @@ import { FC } from "react";
 
 import { motion } from "framer-motion";
 
-import SectionWrapper from "@/hoc/SectionWrapper";
 import { textVariant } from "@/utils/motion";
 import { experiences } from "@/config/site";
 import ExperienceCard from "./ExperienceCard";
 import { VerticalTimeline } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
+import SectionWrapper from "../Common/SectionWrapper";
 
 interface Props {}
 
 const WorkExperience: FC<Props> = (props): JSX.Element => {
   return (
-    <>
+    <SectionWrapper idName="experience">
       <motion.div variants={textVariant()}>
         <p className="sectionSubText">What I have done so far</p>
         <h1 className="sectionHeadText">Work Experience.</h1>
@@ -26,8 +26,8 @@ const WorkExperience: FC<Props> = (props): JSX.Element => {
           ))}
         </VerticalTimeline>
       </div>
-    </>
+    </SectionWrapper>
   );
 };
 
-export default SectionWrapper(WorkExperience, "experience");
+export default WorkExperience;

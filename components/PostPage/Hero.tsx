@@ -5,14 +5,21 @@ import NextImage from "../Common/NextImage";
 
 interface Props {
   post: Post;
+  locale: string;
 }
 
-const Hero: FC<Props> = ({ post }): JSX.Element => {
+const Hero: FC<Props> = ({ post, locale }): JSX.Element => {
   return (
     <div>
-      <PostMetas post={post} isPostPage />
+      <PostMetas post={post} isPostPage locale={locale} />
       <div className="w-full aspect-video lg:max-h-[500px] relative mt-6">
-        <NextImage src={post.image} alt={post.title} className="rounded-md" />
+        <NextImage
+          src={
+            process.env.NEXT_PUBLIC_ASSETS_URL + post.image + "?key=optimised"
+          }
+          alt={post.title}
+          className="rounded-md"
+        />
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ const SocialShare: FC<Props> = ({ slug, title, quote }): JSX.Element => {
   const url = baseURL + "/post/" + slug;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 w-full">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 w-full">
       <FacebookShareButton url={url} quote={quote} title={title}>
         <SocialShareButton
           title="Facebook"

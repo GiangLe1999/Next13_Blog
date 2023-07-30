@@ -12,7 +12,7 @@ interface Props {
 
 const Computers: FC<Props> = ({ isMobile }): JSX.Element => {
   // Load 3D model
-  const computer = useGLTF("/desktop_pc/scene.gltf");
+  const computer = useGLTF("/en/desktop_pc/scene.gltf");
 
   return (
     <mesh>

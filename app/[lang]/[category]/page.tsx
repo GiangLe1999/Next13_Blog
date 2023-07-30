@@ -4,61 +4,7 @@ import { NextPage } from "next";
 import Title from "@/components/Common/Title";
 import directus from "@/lib/directus";
 import { notFound } from "next/navigation";
-import { Category, Post } from "@/types/collection";
-import { cache } from "react";
-
-type ParamsType = { category: string; lang: string };
-
-interface Props {
-  params: ParamsType;
-}
-
-const commonFields: string[] = [
-  "*",
-  "posts.*",
-  "posts.author.id",
-  "posts.author.first_name",
-  "posts.author.last_name",
-  "posts.category.id",
-  "posts.category.title",
-];
-
-export const getCategoryData = cache(
-  async (categoryName: string, locale: string) => {
-    const fields =
-      locale === "en"
-        ? [...commonFields]
-        : [...commonFields, "posts.translations.*"];
-
-    try {
-      const category = await directus.items("category").readByQuery({
-        filter: { slug: { _eq: categoryName } },
-        fields,
-      });
-
-      let fetchedCategory = category?.data?.[0];
-
-      if (locale === "en") {
-        return fetchedCategory as Category;
-      } else {
-        const localisedCategory: Category = {
-          ...fetchedCategory,
-          posts: fetchedCategory.posts.map((post: Post) => ({
-            ...post,
-            title: post.translations[0].title,
-            description: post.translations[0].description,
-            body: post.translations[0].body,
-          })),
-        };
-
-        return localisedCategory;
-      }
-    } catch (error) {
-      console.log(error);
-      throw new Error("Error fetching category");
-    }
-  }
-);
+import { getCategoryData } from "@/lib/fetchData";
 
 export const generateMetadata = async ({ params }: Props) => {
   const { category, lang } = params;
@@ -110,6 +56,10 @@ export const generateStaticParams = async () => {
     throw new Error("Error fetching categories");
   }
 };
+
+interface Props {
+  params: { category: string; lang: string };
+}
 
 const Page: NextPage<Props> = async ({ params }) => {
   const locale = params.lang;

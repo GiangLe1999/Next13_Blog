@@ -7,8 +7,8 @@ import SocialShare from "@/components/PostPage/SocialShare";
 import CTACard from "@/components/HomePage/CTACard";
 import directus from "@/lib/directus";
 import { getDictionary } from "@/lib/getDictionary";
-import { Dictionary, Post } from "@/types/collection";
-import { cache } from "react";
+import { Dictionary } from "@/types/collection";
+import { getPostData } from "@/lib/fetchData";
 
 export const generateMetadata = async ({
   params,
@@ -75,32 +75,6 @@ const commonFields = [
   "author.first_name",
   "author.last_name",
 ];
-
-export const getPostData = cache(async (postSlug: string, locale: string) => {
-  const fields =
-    locale === "en" ? commonFields : [...commonFields, "translations.*"];
-  try {
-    const post = await directus.items("post").readByQuery({
-      filter: { slug: { _eq: postSlug } },
-      fields,
-    });
-
-    const postData = post?.data?.[0] as Post;
-
-    if (locale === "en") {
-      return postData;
-    } else {
-      const localisedPostData = {
-        ...postData,
-        title: postData?.translations?.[0].title,
-        description: postData?.translations?.[0].description,
-        body: postData?.translations?.[0].body,
-      };
-
-      return localisedPostData;
-    }
-  } catch (error) {}
-});
 
 interface Props {
   params: { slug: string; lang: string };

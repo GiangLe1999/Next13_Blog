@@ -43,6 +43,9 @@ export const generateMetadata = async ({
         "vi-VN": `${process.env.NEXT_PUBLIC_BASE_URL}/vi`,
       },
     },
+    verification: {
+      google: "Fk1il2IbdmTvVwlBkioYkvlP0KQq1Ht_8GbczsW_Z2s",
+    },
   };
 };
 

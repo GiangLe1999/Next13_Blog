@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 
 import NextImage from "../Common/NextImage";
 import ReactMarkdown from "react-markdown";
@@ -31,22 +31,14 @@ interface Props {
 }
 
 const PostBody: FC<Props> = ({ body }): JSX.Element => {
-  const [domLoaded, setDomLoaded] = useState(false);
-
-  useEffect(() => {
-    setDomLoaded(true);
-  }, []);
-
   return (
     <>
-      {domLoaded && (
-        <div className="grid grid-cols-1 lg:grid-cols-[0.9fr,0.4fr] gap-20">
-          <main className="dark:prose prose prose-invert max-w-none rich-text content">
-            <ReactMarkdown components={customRenderers}>{body}</ReactMarkdown>
-          </main>
-          <TOC selector=".content" />
-        </div>
-      )}
+      <div className="grid grid-cols-1 lg:grid-cols-[0.9fr,0.4fr] gap-20">
+        <main className="dark:prose prose prose-invert max-w-none rich-text content">
+          <ReactMarkdown components={customRenderers}>{body}</ReactMarkdown>
+        </main>
+        <TOC selector=".content" />
+      </div>
     </>
   );
 };

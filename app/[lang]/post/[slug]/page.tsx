@@ -9,6 +9,8 @@ import directus from "@/lib/directus";
 import { getDictionary } from "@/lib/getDictionary";
 import { Dictionary } from "@/types/collection";
 import { getPostData } from "@/lib/fetchData";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export const generateMetadata = async ({
   params,

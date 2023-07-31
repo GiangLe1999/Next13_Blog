@@ -66,16 +66,6 @@ export const generateStaticParams = async () => {
   }
 };
 
-const commonFields = [
-  "*",
-  "category.id",
-  "category.title",
-  "category.color",
-  "author.id",
-  "author.first_name",
-  "author.last_name",
-];
-
 interface Props {
   params: { slug: string; lang: string };
 }

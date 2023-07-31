@@ -1,5 +1,7 @@
+"use client";
+
 import Image, { StaticImageData } from "next/image";
-import { FC } from "react";
+import { FC, useState } from "react";
 
 interface Props {
   src: string | StaticImageData;
@@ -7,7 +9,11 @@ interface Props {
   className?: string;
 }
 
+const common = "duration-700 ease-in-out";
+
 const NextImage: FC<Props> = ({ src, alt, className }): JSX.Element => {
+  const [isLoading, setLoading] = useState(true);
+
   return (
     <Image
       src={src}
@@ -15,7 +21,10 @@ const NextImage: FC<Props> = ({ src, alt, className }): JSX.Element => {
       fill={true}
       style={{ objectFit: "cover", objectPosition: "center" }}
       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-      className={className}
+      className={`${className} ${common} ${
+        isLoading ? "blur-2xl grayscale" : "blur-0 grayscale-0"
+      }`}
+      onLoadingComplete={() => setLoading(false)}
     />
   );
 };

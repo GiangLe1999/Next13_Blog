@@ -2,7 +2,7 @@ import { cache } from "react";
 import directus from "./directus";
 import { Category, Post } from "@/types/collection";
 
-const commonFields: string[] = [
+const cateCommonFields: string[] = [
   "*",
   "posts.*",
   "posts.author.id",
@@ -16,8 +16,8 @@ export const getCategoryData = cache(
   async (categoryName: string, locale: string) => {
     const fields =
       locale === "en"
-        ? [...commonFields]
-        : [...commonFields, "posts.translations.*"];
+        ? [...cateCommonFields]
+        : [...cateCommonFields, "posts.translations.*"];
 
     try {
       const category = await directus.items("category").readByQuery({
@@ -49,9 +49,21 @@ export const getCategoryData = cache(
   }
 );
 
+const postCommonFields = [
+  "*",
+  "category.id",
+  "category.title",
+  "category.color",
+  "author.id",
+  "author.first_name",
+  "author.last_name",
+];
+
 export const getPostData = cache(async (postSlug: string, locale: string) => {
   const fields =
-    locale === "en" ? commonFields : [...commonFields, "translations.*"];
+    locale === "en"
+      ? postCommonFields
+      : [...postCommonFields, "translations.*"];
   try {
     const post = await directus.items("post").readByQuery({
       filter: { slug: { _eq: postSlug } },

@@ -44,7 +44,7 @@ export const generateMetadata = async ({
       },
     },
     verification: {
-      google: "Fk1il2IbdmTvVwlBkioYkvlP0KQq1Ht_8GbczsW_Z2s",
+      google: "Zu3Fr4Uz3MCDFI9xdrTNvh1yD-Ss05LsHSccAwdBq00",
     },
   };
 };

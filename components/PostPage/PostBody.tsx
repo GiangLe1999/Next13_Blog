@@ -16,6 +16,7 @@ const customRenderers = {
           className="m-0 dark:m-0 rounded-md"
           src={image.src}
           alt={image.alt}
+          priority
         />
       </div>
     );

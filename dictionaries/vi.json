@@ -2,7 +2,7 @@
   "siteTitle": "Blog của River Lee",
   "siteDescription": "Những bài blog cho các lập tình viên. Chủ đề chính là React, Next, CSS, Animation, và nhiều công nghệ khác nữa!",
   "navigation": [
-    { "title": "Trang chủ", "link": "/vi/" },
+    { "title": "Trang chủ", "link": "/vi" },
     { "title": "Giới thiệu", "link": "/vi/about" },
     { "title": "Danh mục", "link": "/vi/categories" },
     { "title": "Liên hệ", "link": "/vi/contact" }
@@ -41,5 +41,32 @@
     "followText": "Theo dõi tôi trên",
     "rightsText": "Tất cả các quyền được bảo lưu",
     "creatorText": "Được tạo ra từ sự tâm huyết của"
+  },
+  "about": {
+    "title": "Sơ lược về bản thân tôi",
+    "subTitle": "Giới thiệu",
+    "description1": "Tôi là nhà phát triển phần mềm có kinh nghiệm về TypeScript và JavaScript, chuyên sâu về các framework như React, Next.js Node.js.",
+    "description2": "Tôi là người học hỏi nhanh và luôn nhiệt tình trong việc cộng tác với khách hàng để đem lại những giải pháp hiệu quả nhất.",
+    "description3": "Ngoài lập trình web, phần lớn thời gian còn lại tôi sẽ đọc sách, viết blog hoặc đi du lịch.",
+    "title2": "Những vai trò mà tôi đã đảm nhận",
+    "subTitle2": "Kinh nghiệm"
+  },
+  "contact": {
+    "title": "Contact",
+    "subTitle": "LIÊN HỆ VỚI TÔi",
+    "input1": {
+      "label": "Tên của bạn",
+      "placeholder": "Tên bạn là gì?"
+    },
+    "input2": {
+      "label": "Email của bạn",
+      "placeholder": "Email của bạn là gì?"
+    },
+    "input3": {
+      "label": "Điều mà bạn muốn nhắn gửi",
+      "placeholder": "Rất vui khi nhận được tin nhắn từ bạn"
+    },
+    "button": "Gửi",
+    "busyButton": "Đang gửi..."
   }
 }

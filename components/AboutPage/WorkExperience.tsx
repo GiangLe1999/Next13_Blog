@@ -8,15 +8,19 @@ import ExperienceCard from "./ExperienceCard";
 import { VerticalTimeline } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import SectionWrapper from "../Common/SectionWrapper";
+import { getDictionary } from "@/lib/getDictionary";
 
-interface Props {}
+interface Props {
+  locale: string;
+}
 
-const WorkExperience: FC<Props> = (props): JSX.Element => {
+const WorkExperience: FC<Props> = async ({ locale }) => {
+  const dictionary = await getDictionary(locale);
   return (
     <SectionWrapper idName="experience">
       <motion.div variants={textVariant()}>
-        <p className="sectionSubText">What I have done so far</p>
-        <h1 className="sectionHeadText">Work Experience.</h1>
+        <p className="sectionSubText">{dictionary.about.subTitle2}</p>
+        <h1 className="sectionHeadText">{dictionary.about.title2}</h1>
       </motion.div>
 
       <div className="mt-12 flex flex-col">

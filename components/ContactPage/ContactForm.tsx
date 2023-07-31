@@ -1,20 +1,46 @@
 "use client";
-import { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, FC, FormEvent, useState } from "react";
 import { motion } from "framer-motion";
 
 import { slideIn } from "@/utils/motion";
 import EarthCanvas from "./EarthCanvas";
 import SectionWrapper from "../Common/SectionWrapper";
+import { ContactPage } from "@/types/collection";
+import directus from "@/lib/directus";
 
-interface Props {}
+interface Props {
+  dictionary: ContactPage;
+}
 
-const ContactForm: FC<Props> = (props): JSX.Element => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [loading, setLoading] = useState(false);
+const formInitialValue = { name: "", email: "", message: "" };
+
+const ContactForm: FC<Props> = ({ dictionary }): JSX.Element => {
+  const [form, setForm] = useState(formInitialValue);
+  const [isHandling, setIsHandling] = useState(false);
 
   const formChangeHandler = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
-  ) => {};
+  ) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const formSubmitHandler = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      setIsHandling(true);
+      await directus.items("message").createOne({
+        email: form.email,
+        name: form.name,
+        message: form.message,
+      });
+
+      setIsHandling(false);
+      setForm(formInitialValue);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <SectionWrapper>
       <div className="xl:mt-12 xl:flex-row flex-col-reverse flex gap-10 overflow-hidden">
@@ -22,13 +48,16 @@ const ContactForm: FC<Props> = (props): JSX.Element => {
           variants={slideIn("left", "tween", 0.2, 1)}
           className="min-w-[500px] bg-black-100 dark:bg-white-100 p-8 rounded-2xl"
         >
-          <p className="sectionSubText">Get in touch</p>
-          <h1 className="sectionHeadText">Contact</h1>
+          <p className="sectionSubText">{dictionary.subTitle}</p>
+          <h1 className="sectionHeadText">{dictionary.title}</h1>
 
-          <form className="mt-12 flex flex-col gap-8">
+          <form
+            className="mt-12 flex flex-col gap-8"
+            onSubmit={formSubmitHandler}
+          >
             <label htmlFor="name" className="flex flex-col">
               <span className="text-white dark:text-neutral-500 font-medium mb-4">
-                Your Name
+                {dictionary.input1.label}
               </span>
               <input
                 id="name"
@@ -36,7 +65,7 @@ const ContactForm: FC<Props> = (props): JSX.Element => {
                 name="name"
                 value={form.name}
                 onChange={formChangeHandler}
-                placeholder="What's your name?"
+                placeholder={dictionary.input1.placeholder}
                 className="bg-tertiary dark:bg-slate-400 py-4 px-6 placeholder:text-secondary dark:placeholder:text-neutral-300 text-white
               rounded-lg font-medium border-transparent border focus:border-white focus:border dark:focus:border-quaternary"
               />
@@ -44,7 +73,7 @@ const ContactForm: FC<Props> = (props): JSX.Element => {
 
             <label htmlFor="email" className="flex flex-col">
               <span className="text-white dark:text-neutral-500 font-medium mb-4">
-                Your Email
+                {dictionary.input2.label}
               </span>
               <input
                 id="email"
@@ -52,7 +81,7 @@ const ContactForm: FC<Props> = (props): JSX.Element => {
                 name="email"
                 value={form.email}
                 onChange={formChangeHandler}
-                placeholder="What's your email?"
+                placeholder={dictionary.input2.placeholder}
                 className="bg-tertiary dark:bg-slate-400 py-4 px-6 placeholder:text-secondary dark:placeholder:text-neutral-300 text-white
               rounded-lg font-medium border-transparent border focus:border-white focus:border dark:focus:border-quaternary"
               />
@@ -60,7 +89,7 @@ const ContactForm: FC<Props> = (props): JSX.Element => {
 
             <label htmlFor="message" className="flex flex-col">
               <span className="text-white dark:text-neutral-500 font-medium mb-4">
-                Your Message
+                {dictionary.input3.label}
               </span>
               <textarea
                 rows={7}
@@ -68,7 +97,7 @@ const ContactForm: FC<Props> = (props): JSX.Element => {
                 name="message"
                 value={form.message}
                 onChange={formChangeHandler}
-                placeholder="What do you want to say?"
+                placeholder={dictionary.input3.placeholder}
                 className="resize-none bg-tertiary dark:bg-slate-400 py-4 px-6 placeholder:text-secondary dark:placeholder:text-neutral-300 text-white
               rounded-lg font-medium border-transparent border focus:border-white focus:border dark:focus:border-quaternary"
               />
@@ -79,7 +108,7 @@ const ContactForm: FC<Props> = (props): JSX.Element => {
             shadow-primary rounded-xl"
               type="submit"
             >
-              {loading ? "Sending" : "Send"}
+              {isHandling ? dictionary.busyButton : dictionary.button}
             </button>
           </form>
         </motion.div>

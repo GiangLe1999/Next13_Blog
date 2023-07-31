@@ -15,12 +15,18 @@ interface Props {
   slug: string;
   title: string;
   quote?: string;
+  locale: string;
 }
 
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
-const SocialShare: FC<Props> = ({ slug, title, quote }): JSX.Element => {
-  const url = baseURL + "/post/" + slug;
+const SocialShare: FC<Props> = ({
+  slug,
+  title,
+  quote,
+  locale,
+}): JSX.Element => {
+  const url = `${baseURL}/${locale}/post/${slug}`;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 w-full">

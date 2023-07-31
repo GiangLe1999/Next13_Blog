@@ -2,7 +2,7 @@
   "siteTitle": "River Lee's Blog",
   "siteDescription": "Blog posts for developers. Focus on React, Next, CSS, Animation, and more!",
   "navigation": [
-    { "title": "Home", "link": "/en/" },
+    { "title": "Home", "link": "/en" },
     { "title": "About", "link": "/en/about" },
     { "title": "Categories", "link": "/en/categories" },
     { "title": "Contact", "link": "/en/contact" }
@@ -41,5 +41,32 @@
     "followText": "Follow me on",
     "rightsText": "All Rights Reserved",
     "creatorText": "Made with love by"
+  },
+  "about": {
+    "title": "Overview",
+    "subTitle": "Introduction",
+    "description1": "Iam a skilled software developer with experience in TypeScript and JavaScript, and expertise in frameworks like React, Next.js  Node.js.",
+    "description2": "Iam a quick learner and collaborate closely with clients to create efficient, scalable, and user-friendly solutions that solve real-world problems.",
+    "description3": " When I am not writing code, Iam probably spending my time either reading a book, working on a blog post or traveling.",
+    "title2": "Which companies I have worked for?",
+    "subTitle2": "Work Experience"
+  },
+  "contact": {
+    "title": "Contact",
+    "subTitle": "GET IN TOUCH",
+    "input1": {
+      "label": "Your Name",
+      "placeholder": "What's your name?"
+    },
+    "input2": {
+      "label": "Your Email",
+      "placeholder": "What's your email?"
+    },
+    "input3": {
+      "label": "Your Message",
+      "placeholder": "What's your message?"
+    },
+    "button": "Send",
+    "busyButton": "Sending..."
   }
 }

@@ -27,6 +27,25 @@ export interface Author {
   last_name: string;
 }
 
+export type ContactPage = {
+  title: string;
+  subTitle: string;
+  input1: {
+    label: string;
+    placeholder: string;
+  };
+  input2: {
+    label: string;
+    placeholder: string;
+  };
+  input3: {
+    label: string;
+    placeholder: string;
+  };
+  button: string;
+  busyButton: string;
+};
+
 export interface Dictionary {
   siteTitle: string;
   siteDescription: string;
@@ -66,4 +85,14 @@ export interface Dictionary {
     rightsText: string;
     creatorText: string;
   };
+  about: {
+    title: string;
+    subTitle: string;
+    description1: string;
+    description2: string;
+    description3: string;
+    title2: string;
+    subTitle2: string;
+  };
+  contact: ContactPage;
 }

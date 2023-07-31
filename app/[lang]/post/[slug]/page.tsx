@@ -119,7 +119,7 @@ const Page: NextPage<Props> = async ({ params }) => {
       </div>
 
       {/* Social Share */}
-      <SocialShare slug={post.slug} title={post.title} />
+      <SocialShare slug={post.slug} title={post.title} locale={locale} />
 
       {/* CTA Card */}
       <CTACard dictionary={dictionary.ctaCard} />

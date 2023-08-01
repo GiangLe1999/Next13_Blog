@@ -66,7 +66,7 @@
 }
 
 .sectionHeadText {
-  @apply text-white dark:text-gray-600 font-black md:text-[40px] sm:text-[36px] xs:text-[32px] text-[30px];
+  @apply text-white uppercase dark:text-gray-600 font-black md:text-[40px] sm:text-[36px] xs:text-[32px] text-[30px];
 }
 
 .sectionSubText {
@@ -119,6 +119,24 @@
     #ff0a78 0%,
     rgba(60, 51, 80, 0) 100%
   );
+}
+
+.cate-shadow {
+  filter: drop-shadow(
+      0 -5.9px 2.7px hsl(var(--dropdown-shadow-color, 0deg 0% 0%) / 0.025)
+    )
+    drop-shadow(
+      0 -1.2px 6.9px hsl(var(--dropdown-shadow-color, 0deg 0% 0%) / 0.025)
+    )
+    drop-shadow(
+      0 8px 14.2px hsl(var(--dropdown-shadow-color, 0deg 0% 0%) / 0.05)
+    )
+    drop-shadow(
+      0 21.9px 29.2px hsl(var(--dropdown-shadow-color, 0deg 0% 0%) / 0.05)
+    )
+    drop-shadow(
+      0 49px 80px hsl(var(--dropdown-shadow-color, 0deg 0% 0%) / 0.07)
+    );
 }
 
 .green-pink-gradient {

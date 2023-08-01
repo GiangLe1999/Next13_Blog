@@ -31,6 +31,7 @@
     "maath": "^0.7.0",
     "negotiator": "^0.6.3",
     "next": "13.4.10",
+    "next-nprogress-bar": "^2.0.3",
     "next-share": "^0.24.0",
     "postcss": "8.4.26",
     "react": "18.2.0",

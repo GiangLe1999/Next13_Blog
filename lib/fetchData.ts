@@ -1,3 +1,4 @@
+import { categories } from "@/config/site";
 import { cache } from "react";
 import directus from "./directus";
 import { Category, Post } from "@/types/collection";
@@ -10,6 +11,7 @@ const cateCommonFields: string[] = [
   "posts.author.last_name",
   "posts.category.id",
   "posts.category.title",
+  "posts.category.posts",
 ];
 
 export const getCategoryData = cache(
@@ -118,3 +120,39 @@ export const getAllPosts = async (locale: string) => {
     console.log(error);
   }
 };
+
+const allCateCommonFields = [...cateCommonFields, "posts.category.color"];
+
+export const getAllCategories = cache(async (locale: string) => {
+  const fields =
+    locale === "en"
+      ? [...allCateCommonFields]
+      : [...allCateCommonFields, "posts.translations.*"];
+
+  try {
+    const categories = await directus.items("category").readByQuery({
+      fields,
+    });
+
+    let fetchedCategory = categories.data;
+
+    if (locale === "en") {
+      return fetchedCategory as Category[];
+    } else {
+      const localisedCategory = fetchedCategory?.map((category) => ({
+        ...category,
+        posts: category.posts.map((post: Post) => ({
+          ...post,
+          title: post.translations[0].title,
+          description: post.translations[0].description,
+          body: post.translations[0].body,
+        })),
+      }));
+
+      return localisedCategory as Category[];
+    }
+  } catch (error) {
+    console.log(error);
+    throw new Error("Error fetching category");
+  }
+});

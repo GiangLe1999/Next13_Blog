@@ -19,6 +19,7 @@ export interface Category {
   description?: string;
   color?: string;
   posts: Post[];
+  field: string | "Web development";
 }
 
 export interface Author {

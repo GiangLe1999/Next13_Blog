@@ -6,12 +6,8 @@ import {
   creator,
   web,
   javascript,
-  typescript,
-  html,
   css,
   reactjs,
-  redux,
-  tailwind,
   nodejs,
   mongodb,
   git,
@@ -97,52 +93,54 @@ const services: Service[] = [
 interface Category {
   name: string;
   icon: StaticImageData;
+  link: string;
 }
 
 const categories: Category[] = [
   {
-    name: "HTML 5",
-    icon: html,
-  },
-  {
     name: "CSS 3",
     icon: css,
+    link: "css",
   },
   {
     name: "JavaScript",
     icon: javascript,
-  },
-  {
-    name: "TypeScript",
-    icon: typescript,
+    link: "javascript",
   },
   {
     name: "React JS",
     icon: reactjs,
+    link: "reactjs",
   },
   {
-    name: "Redux Toolkit",
-    icon: redux,
-  },
-  {
-    name: "Tailwind CSS",
-    icon: tailwind,
+    name: "Next JS",
+    icon: reactjs,
+    link: "nextjs",
   },
   {
     name: "Node JS",
     icon: nodejs,
+    link: "nodejs",
   },
   {
     name: "MongoDB",
     icon: mongodb,
+    link: "mongodb",
   },
   {
     name: "git",
     icon: git,
+    link: "git",
+  },
+  {
+    name: "CS50",
+    icon: git,
+    link: "cs50",
   },
   {
     name: "figma",
     icon: figma,
+    link: "figma",
   },
 ];
 

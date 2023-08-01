@@ -2,6 +2,7 @@ import { Dispatch, FC, SetStateAction } from "react";
 import { usePathname } from "next/navigation";
 
 import Link from "next/link";
+import NavDropdown from "./NavDropdown";
 
 interface Props {
   mobile?: boolean;
@@ -28,17 +29,17 @@ const NavLinks: FC<Props> = ({
       }`}
     >
       {navDictionary?.map((link, index) => (
-        <li key={index} onClick={() => setToggle && setToggle(false)}>
-          <Link
-            className={`${
-              pathName === link.link
-                ? "text-quaternary font-bold text-[17px] border-2 border-quaternary"
-                : "text-white dark:lg:text-neutral-600 dark:text-white font-medium"
-            } cursor-pointer text-[16px] px-2 py-1 rounded-md`}
-            href={link.link}
-          >
-            {link.title}
-          </Link>
+        <li
+          key={index}
+          onClick={() => setToggle && setToggle(false)}
+          className={`${
+            pathName === link.link
+              ? "text-quaternary font-bold text-[17px] border-2 border-quaternary"
+              : "dark:text-gray-700 text-white font-medium"
+          } cursor-pointer text-[16px] px-2 py-1 rounded-md flex items-center gap-1`}
+        >
+          <Link href={link.link}>{link.title}</Link>
+          {index === 2 && <NavDropdown />}
         </li>
       ))}
     </ul>

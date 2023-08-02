@@ -1,14 +1,19 @@
+"use client";
+
 import { Post } from "@/types/collection";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FC } from "react";
 import NextImage from "../NextImage";
 import PostMetas from "./PostMetas";
+import { motion } from "framer-motion";
+import { fadeIn } from "@/utils/motion";
 
 interface Props {
   post: Post;
   layout?: "vertical" | "horizontal";
   reverse?: boolean;
   locale: string;
+  index: number;
 }
 
 const PostCard: FC<Props> = ({
@@ -16,15 +21,18 @@ const PostCard: FC<Props> = ({
   layout = "horizontal",
   reverse = false,
   locale,
+  index,
 }): JSX.Element => {
+  const router = useRouter();
   return (
-    <Link
+    <motion.div
+      variants={fadeIn("up", "spring", index * 0.5, 0.75)}
       className={`${
         layout === "horizontal"
           ? "grid grid-cols-1 lg:grid-cols-2 items-center gap-5 lg:gap-10"
           : "space-y-5"
-      }  group`}
-      href={`/${locale}/post/${post.slug}`}
+      }  group cursor-pointer`}
+      onClick={() => router.push(`/${locale}/post/${post.slug}`)}
     >
       {/* Post image */}
       <div
@@ -43,7 +51,7 @@ const PostCard: FC<Props> = ({
 
       {/* Tag & Title & Description */}
       <PostMetas post={post} locale={locale} />
-    </Link>
+    </motion.div>
   );
 };
 

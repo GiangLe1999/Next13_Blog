@@ -1,7 +1,11 @@
+"use client";
+
 import { FC } from "react";
 import Title from "../Common/Title";
 import { Category } from "@/types/collection";
-import PostCard from "../Common/Posts/PostCard";
+import PostList from "../Common/Posts/PostList";
+import { motion } from "framer-motion";
+import { staggerContainer } from "@/utils/motion";
 
 interface Props {
   category: Category;
@@ -10,7 +14,12 @@ interface Props {
 
 const CategorySection: FC<Props> = ({ category, locale }): JSX.Element => {
   return (
-    <div>
+    <motion.section
+      variants={staggerContainer()}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.25 }}
+    >
       <Title
         title={category.title}
         subTitle={category.field}
@@ -20,10 +29,8 @@ const CategorySection: FC<Props> = ({ category, locale }): JSX.Element => {
         }
       />
 
-      {category.posts.map((post) => (
-        <PostCard post={post} key={post.id} locale={locale} />
-      ))}
-    </div>
+      <PostList posts={category.posts} locale={locale} />
+    </motion.section>
   );
 };
 

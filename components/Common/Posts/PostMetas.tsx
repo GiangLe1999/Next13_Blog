@@ -16,7 +16,7 @@ const PostMetas: FC<Props> = ({ post, isPostPage, locale }): JSX.Element => {
     <div className="space-y-2">
       {/* Tags */}
       <div className="flex flex-wrap items-center gap-2 text-xs xs:text-sm text-neutral-500">
-        <div className={`font-medium`} style={{ color: post.category.color }}>
+        <div className="font-bold" style={{ color: post.category.color }}>
           {post.category.title}
         </div>
 
@@ -39,7 +39,7 @@ const PostMetas: FC<Props> = ({ post, isPostPage, locale }): JSX.Element => {
             {post.title}
           </h1>
         ) : (
-          <h3 className="text-xl font-bold dark:text-gray-800 text-white">
+          <h3 className="text-xl font-bold dark:text-gray-800 text-white group-hover:text-quaternary">
             {post.title}
           </h3>
         )}

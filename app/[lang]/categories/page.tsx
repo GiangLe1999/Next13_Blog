@@ -17,7 +17,7 @@ const Page: NextPage<Props> = async ({ params }) => {
   const categories = await getAllCategories(locale);
 
   return (
-    <Container className="pt-[120px] space-y-10">
+    <Container className="pt-[120px] space-y-20">
       <div>
         <Title
           title="DANH MỤC"

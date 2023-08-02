@@ -6,18 +6,26 @@ interface Props {
   posts: Post[];
   layout?: "vertical" | "horizontal";
   locale: string;
+  special?: boolean;
 }
 
 const PostList: FC<Props> = ({
   posts,
   layout = "vertical",
   locale,
+  special,
 }): JSX.Element => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-      {posts.map((post) => {
+      {posts.map((post, index) => {
         return (
-          <PostCard post={post} key={post.id} layout={layout} locale={locale} />
+          <PostCard
+            index={special ? index + 4 : index + 1}
+            post={post}
+            key={post.id}
+            layout={layout}
+            locale={locale}
+          />
         );
       })}
     </div>

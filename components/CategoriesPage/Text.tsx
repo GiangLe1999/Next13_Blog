@@ -15,7 +15,7 @@ const Text: FC<Props> = ({ locale }): JSX.Element => {
         </p>
         <p>
           {locale === "en"
-            ? "In total I've written 172 tutorials and posts on internet. This site is a collection of most of the them."
+            ? "In total I've written 172 tutorials and posts on internet. This site is a collection of most of them."
             : "Tổng cộng tôi đã viết 172 bài. Trang web này là nơi đăng tải phần lớn bài viết. Mong các bạn cảm thấy chúng bổ ích!"}
         </p>
       </div>

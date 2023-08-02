@@ -19,6 +19,8 @@ import {
   carrent,
   jobit,
   tripguide,
+  nextjs,
+  cs50,
 } from "@/public/assets";
 import { FC } from "react";
 import { Facebook, Github, Linkedin, Twitter } from "@/components/Assets/Icons";
@@ -114,7 +116,7 @@ const categories: Category[] = [
   },
   {
     name: "Next JS",
-    icon: reactjs,
+    icon: nextjs,
     link: "nextjs",
   },
   {
@@ -134,7 +136,7 @@ const categories: Category[] = [
   },
   {
     name: "CS50",
-    icon: git,
+    icon: cs50,
     link: "cs50",
   },
   {

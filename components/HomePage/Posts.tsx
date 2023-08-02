@@ -6,6 +6,7 @@ import Title from "../Common/Title";
 import { Dictionary, Post } from "@/types/collection";
 import SectionWrapper from "../Common/SectionWrapper";
 import Subtitle from "../Common/Subtitle";
+import PostList from "../Common/Posts/PostList";
 
 interface Props {
   posts: Post[];
@@ -26,17 +27,20 @@ const Posts: FC<Props> = async ({ posts, dictionary, locale }) => {
       </div>
 
       <div className="mt-8 space-y-10">
-        <PostCard post={posts[0]} locale={locale} />
-        {/* <PostList
+        <PostCard index={0} post={posts[0]} locale={locale} />
+        <PostList
+          locale={locale}
           posts={posts.filter((post, index) => index > 0 && index < 3)}
-        /> */}
+        />
 
         <CTACard dictionary={dictionary.ctaCard} />
 
-        {/* <PostCard post={posts[3]} reverse /> */}
-        {/* <PostList
+        <PostCard index={3} post={posts[3]} reverse locale={locale} />
+        <PostList
+          special
+          locale={locale}
           posts={posts.filter((post, index) => index > 3 && index < 6)}
-        /> */}
+        />
       </div>
     </SectionWrapper>
   );

@@ -97,3 +97,24 @@ export interface Dictionary {
   };
   contact: ContactPage;
 }
+
+export interface UserProfile {
+  id: string;
+  name: string;
+  avatar: string | undefined;
+  email: string;
+  role: "user" | "admin";
+}
+
+export type replyComments = CommentResponse[];
+export interface CommentResponse {
+  id: string;
+  content: string;
+  createdAt: string;
+  likes: number;
+  likedByOwner?: boolean;
+  replies?: replyComments;
+  repliedTo?: string;
+  chiefComment: boolean;
+  owner: { name: string; id: string; avatar?: string };
+}

@@ -13,3 +13,14 @@ export const getReadingTime = (text: string, locale: string) => {
 export const getRelativeDate = (date: string, locale: string) => {
   return DateTime.fromISO(date).setLocale(locale).toRelative();
 };
+
+export const formatDate = (date: string, locale: string) => {
+  return new Date(date).toLocaleDateString(
+    locale === "en" ? "en-US" : "vi-VN",
+    {
+      year: "numeric",
+      month: "long",
+      day: "2-digit",
+    }
+  );
+};

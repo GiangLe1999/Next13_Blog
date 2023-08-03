@@ -22,7 +22,7 @@ const ThemeButton: FC<Props> = (props): JSX.Element => {
   return (
     <div className="text-white cursor-pointer" onClick={changeThemeHandler}>
       {currentTheme === "light" ? (
-        <Moon className="w-[24px] h-[24px]" />
+        <Moon className="w-[22px] h-[22px]" />
       ) : (
         <Sun className="w-[24px] h-[24px] text-quaternary" />
       )}

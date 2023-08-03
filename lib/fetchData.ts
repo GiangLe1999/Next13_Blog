@@ -1,4 +1,3 @@
-import { categories } from "@/config/site";
 import { cache } from "react";
 import directus from "./directus";
 import { Category, Post } from "@/types/collection";
@@ -122,40 +121,73 @@ export const getAllPosts = async (locale: string) => {
   }
 };
 
+export const getRelatedPosts = async (
+  locale: string,
+  postId: string,
+  categoryId: string,
+  limit: number
+) => {
+  try {
+    const posts = await directus.items("post").readByQuery({
+      filter: { category: { _eq: categoryId }, id: { _neq: postId } },
+      fields: [
+        "title",
+        "description",
+        "slug",
+        "image",
+        "translations.title",
+        "translations.description",
+        "date_updated",
+      ],
+      limit,
+    });
+
+    if (locale === "en") {
+      return posts.data as Post[];
+    } else {
+      const localisedPosts = posts.data?.map((post) => ({
+        ...post,
+        title: post.translations[0].title,
+        description: post.translations[0].description,
+      }));
+
+      return localisedPosts as Post[];
+    }
+  } catch (error) {}
+};
+
 const allCateCommonFields = [...cateCommonFields, "posts.category.color"];
 
-export const getAllCategories = cache(
-  async (locale: string, category?: string) => {
-    const fields =
-      locale === "en"
-        ? [...allCateCommonFields]
-        : [...allCateCommonFields, "posts.translations.*"];
+export const getAllCategories = cache(async (locale: string) => {
+  const fields =
+    locale === "en"
+      ? [...allCateCommonFields]
+      : [...allCateCommonFields, "posts.translations.*"];
 
-    try {
-      const categories = await directus.items("category").readByQuery({
-        fields,
-      });
+  try {
+    const categories = await directus.items("category").readByQuery({
+      fields,
+    });
 
-      let fetchedCategory = categories.data;
+    let fetchedCategory = categories.data;
 
-      if (locale === "en") {
-        return fetchedCategory as Category[];
-      } else {
-        const localisedCategory = fetchedCategory?.map((category) => ({
-          ...category,
-          posts: category.posts.map((post: Post) => ({
-            ...post,
-            title: post.translations[0].title,
-            description: post.translations[0].description,
-            body: post.translations[0].body,
-          })),
-        }));
+    if (locale === "en") {
+      return fetchedCategory as Category[];
+    } else {
+      const localisedCategory = fetchedCategory?.map((category) => ({
+        ...category,
+        posts: category.posts.map((post: Post) => ({
+          ...post,
+          title: post.translations[0].title,
+          description: post.translations[0].description,
+          body: post.translations[0].body,
+        })),
+      }));
 
-        return localisedCategory as Category[];
-      }
-    } catch (error) {
-      console.log(error);
-      throw new Error("Error fetching category");
+      return localisedCategory as Category[];
     }
+  } catch (error) {
+    console.log(error);
+    throw new Error("Error fetching category");
   }
-);
+});

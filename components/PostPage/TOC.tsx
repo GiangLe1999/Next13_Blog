@@ -107,7 +107,9 @@ const TOC: FC<Props> = ({ selector }): JSX.Element => {
                   });
                 }}
               >
-                {heading.innerHTML}
+                {heading.innerHTML.length > 40
+                  ? heading.innerHTML.substring(0, 40) + "..."
+                  : heading.innerHTML}
               </li>
             );
           })}

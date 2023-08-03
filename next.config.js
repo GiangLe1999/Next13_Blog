@@ -7,6 +7,10 @@ const nextConfig = {
         hostname: "directus-production-6d2d.up.railway.app",
         protocol: "https",
       },
+      {
+        hostname: "avatars.githubusercontent.com",
+        protocol: "https",
+      },
     ],
   },
 };

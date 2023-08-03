@@ -9,6 +9,8 @@ import ThemeButton from "./ThemeButton";
 import Logo from "@/components/Common/Logo";
 import { useDictionary } from "@/hook/useDictionary";
 import LangSwitcher from "./LangSwitcher";
+import GitHubLogin from "./GitHubLogin";
+import { NextAuthProvider } from "@/app/providers";
 
 interface Props {
   locale: string;
@@ -35,12 +37,15 @@ const Navigation: FC<Props> = ({ locale }): JSX.Element => {
 
           <div className="flex flex-1 justify-end items-center space-x-5">
             {/* Theme */}
-            <div className="">
-              <ThemeButton />
-            </div>
+            <ThemeButton />
 
             {/* Language */}
             <LangSwitcher locale={locale} />
+
+            <NextAuthProvider>
+              {/* Login */}
+              <GitHubLogin locale={locale} />
+            </NextAuthProvider>
 
             {/* Nav links on mobile */}
             <div className="lg:hidden">

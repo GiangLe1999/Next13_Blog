@@ -9,6 +9,10 @@ import directus from "@/lib/directus";
 import { getDictionary } from "@/lib/getDictionary";
 import { Dictionary } from "@/types/collection";
 import { getPostData } from "@/lib/fetchData";
+import RelatedPosts from "@/components/PostPage/RelatedPosts";
+import Comments from "@/components/PostPage/Comments";
+import { NextAuthProvider } from "@/app/providers";
+import CommentForm from "@/components/PostPage/CommentForm";
 
 export const generateMetadata = async ({
   params,
@@ -93,7 +97,7 @@ const Page: NextPage<Props> = async ({ params }) => {
   };
 
   return (
-    <Container className="pt-[80px] space-y-10">
+    <Container className="pt-[80px] space-y-16">
       {/* Add JSON-LD */}
       <script
         type="application/ld+json"
@@ -113,6 +117,21 @@ const Page: NextPage<Props> = async ({ params }) => {
 
       {/* CTA Card */}
       <CTACard dictionary={dictionary.ctaCard} />
+
+      {/* Related Posts */}
+      <RelatedPosts
+        locale={locale}
+        postId={post.id}
+        categoryId={post.category.id}
+      />
+
+      {/* Comments */}
+      <Comments locale={locale} postId={post.id} />
+
+      {/* Comment Form */}
+      <NextAuthProvider>
+        <CommentForm locale={locale} postId={post.id} />
+      </NextAuthProvider>
     </Container>
   );
 };

@@ -48,6 +48,11 @@
   }
 }
 
+textarea,
+input {
+  @apply border-transparent outline-transparent;
+}
+
 .paddingX {
   @apply sm:px-16 px-6;
 }
@@ -100,6 +105,14 @@
   @apply w-2 h-2 rounded-full bg-neutral-200;
 }
 
+.post-btn {
+  @apply uppercase rounded-md text-white py-4 px-1 w-full font-bold bg-gradient-to-r from-pink-600 to-pink-700 hover:scale-105 transition;
+}
+
+.post-section-title {
+  @apply text-2xl dark:text-gray-800 text-white font-bold mb-4;
+}
+
 .black-gradient {
   background: #000000; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -115,7 +128,7 @@
 }
 
 .pink-gradient {
-  background: #ff0a78;
+  background: rgb(218, 0, 98);
   background: linear-gradient(-90deg, #ff0a78 0%, rgba(60, 51, 80, 0) 100%);
   background: -webkit-linear-gradient(
     -90deg,

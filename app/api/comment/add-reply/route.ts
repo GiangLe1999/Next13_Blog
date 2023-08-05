@@ -1,5 +1,6 @@
 import dbConnect from "@/lib/dbConnect";
 import { isAuth } from "@/lib/isAuth";
+import { formatComment } from "@/lib/postComment";
 import Comment from "@/model/comment";
 import { NextResponse } from "next/server";
 
@@ -48,8 +49,10 @@ export async function POST(req: Request) {
   }
   await chiefComment.save();
 
+  const finalComment = await replyComment.populate("owner");
+
   return NextResponse.json(
-    { comment: replyComment },
+    { comment: formatComment(finalComment, user) },
     {
       status: 201,
     }

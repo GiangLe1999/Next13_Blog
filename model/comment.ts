@@ -19,7 +19,7 @@ const CommentSchema = new Schema<CommentProps>(
     content: { type: String, required: true },
     likes: { type: [{ type: Schema.Types.ObjectId, ref: "User" }] },
     replies: { type: [{ type: Schema.Types.ObjectId, ref: "Comment" }] },
-    repliedTo: { type: [{ type: Schema.Types.ObjectId, ref: "Comment" }] },
+    repliedTo: { type: Schema.Types.ObjectId, ref: "Comment" },
     chiefComment: { type: Boolean, default: false },
   },
   { timestamps: true }

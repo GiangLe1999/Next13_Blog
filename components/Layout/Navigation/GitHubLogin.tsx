@@ -54,8 +54,8 @@ const GitHubLogin: FC<Props> = ({ locale }): JSX.Element => {
           transformOrigin: "30px -10px",
         }}
         className={`${
-          session ? "w-[66px] py-1 px-2" : "w-[125px] p-1"
-        } ${common} -bottom-11 -left-[8px] flex
+          session ? "w-[66px] px-2" : "w-[142px] px-3"
+        } ${common} py-1 -bottom-11 -left-[8px] flex
        bg-white dark:text-gray-700 rounded`}
       >
         {session ? "Log out" : "Login with Github"}

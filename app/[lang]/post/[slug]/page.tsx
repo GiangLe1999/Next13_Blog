@@ -127,11 +127,6 @@ const Page: NextPage<Props> = async ({ params }) => {
 
       {/* Comments */}
       <Comments locale={locale} postId={post.id} />
-
-      {/* Comment Form */}
-      <NextAuthProvider>
-        <CommentForm locale={locale} postId={post.id} />
-      </NextAuthProvider>
     </Container>
   );
 };

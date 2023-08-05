@@ -1,5 +1,6 @@
 import dbConnect from "@/lib/dbConnect";
 import { isAuth } from "@/lib/isAuth";
+import { formatComment } from "@/lib/postComment";
 import Comment from "@/model/comment";
 import { NextResponse } from "next/server";
 
@@ -18,7 +19,13 @@ export async function POST(req: Request) {
 
   await dbConnect();
 
-  const comment = await Comment.findById(commentId);
+  const comment = await Comment.findById(commentId)
+    .populate({ path: "owner", select: "name avatar" })
+    .populate({
+      path: "replies",
+      populate: { path: "owner", select: "name avatar" },
+    });
+
   if (!comment) {
     return NextResponse.json(
       { error: "Comment not found!" },
@@ -42,7 +49,14 @@ export async function POST(req: Request) {
   await comment.save();
 
   return NextResponse.json(
-    { comment },
+    {
+      comment: {
+        ...formatComment(comment, user),
+        replies: comment.replies?.map((reply: any) =>
+          formatComment(reply, user)
+        ),
+      },
+    },
     {
       status: 201,
     }

@@ -2,7 +2,8 @@
 import { CommentResponse } from "@/types/collection";
 import axios from "axios";
 
-import { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, FC, useState, SetStateAction } from "react";
+import { Spinner } from "../Assets/Icons";
 
 interface Props {
   locale: string;
@@ -33,13 +34,17 @@ const CommentForm: FC<Props> = ({
   setFormContent,
   editId,
 }): JSX.Element => {
+  const [submitting, setSubmitting] = useState(false);
+
   const replySubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      setSubmitting(true);
       const { data } = await axios.post("/api/comment/add-reply", {
         repliedTo: commentId,
         content: formContent,
       });
+      setSubmitting(false);
       closeFormHandler();
       insertNewReplyHandler(data.comment);
     } catch (error) {
@@ -69,10 +74,12 @@ const CommentForm: FC<Props> = ({
   const editSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      setSubmitting(true);
       const { data } = await axios.patch(`/api/comment`, {
         commentId: editId,
         content: formContent,
       });
+      setSubmitting(false);
       closeFormHandler();
       updateCommentHandler(data.comment);
     } catch (error) {
@@ -123,20 +130,11 @@ const CommentForm: FC<Props> = ({
       <div className="flex justify-between">
         <div>
           <h4 className="post-section-title">
-            {locale === "en" && isReplyForm && !isEditForm && "Leave a reply"}
-            {locale === "vi" &&
-              isReplyForm &&
-              !isEditForm &&
-              "Phản hồi về comment này"}
+            {locale === "en" && isReplyForm && "Leave a reply"}
+            {locale === "vi" && isReplyForm && "Phản hồi về comment này"}
 
-            {locale === "en" &&
-              !isReplyForm &&
-              isEditForm &&
-              "Edit your comment"}
-            {locale === "vi" &&
-              !isReplyForm &&
-              isEditForm &&
-              "Chỉnh sửa bình luận"}
+            {locale === "en" && isEditForm && "Edit your comment"}
+            {locale === "vi" && isEditForm && "Chỉnh sửa bình luận"}
           </h4>
           <p className="mb-4 dark:text-gray-900 text-white">
             {locale === "en"
@@ -172,13 +170,20 @@ const CommentForm: FC<Props> = ({
         hover:border-quaternary w-full focus:border-white focus:!border-2 dark:focus:border-quaternary transition"
       ></textarea>
 
-      <div className="text-right mt-4">
+      <div className="flex justify-end mt-4">
         <button type="submit" className="post-btn rounded-3xl !w-44 !py-4">
-          {locale === "en" && isReplyForm && !isEditForm && "Send reply"}
-          {locale === "vi" && isReplyForm && !isEditForm && "Gửi phản hồi"}
+          {submitting && (
+            <Spinner className="animate-spin w-5 h-5 text-white" />
+          )}
 
-          {locale === "en" && !isReplyForm && isEditForm && "Comfirm"}
-          {locale === "vi" && !isReplyForm && isEditForm && "Xác nhận"}
+          {locale === "en" && isReplyForm && !submitting && "Send reply"}
+          {locale === "vi" && isReplyForm && !submitting && "Gửi phản hồi"}
+
+          {locale === "en" && isEditForm && !submitting && "Comfirm"}
+          {locale === "vi" && isEditForm && !submitting && "Xác nhận"}
+
+          {locale === "en" && submitting && "Sending"}
+          {locale === "vi" && submitting && "Đang gửi"}
         </button>
       </div>
     </form>

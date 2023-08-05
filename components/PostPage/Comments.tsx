@@ -25,7 +25,9 @@ const Comments: FC<Props> = ({ locale, postId }): JSX.Element => {
     <>
       <div>
         <h4 className="post-section-title">
-          {locale === "en" ? "20 Comments" : "20 Bình luận"}
+          {locale === "en"
+            ? `${comments.length} Comments`
+            : `${comments.length} Bình luận`}
         </h4>
 
         <div className="p-8 header-gradient dark:bg-none dark:bg-white shadow-md rounded-md">

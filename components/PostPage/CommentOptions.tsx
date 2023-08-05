@@ -5,6 +5,7 @@ import {
   BreakHeart,
   Edit,
   Heart,
+  Spinner,
   ThreeDots,
   TrashBin,
 } from "../Assets/Icons";
@@ -12,6 +13,7 @@ import Swal from "sweetalert2";
 import { CommentResponse } from "@/types/collection";
 import axios from "axios";
 import useAuth from "@/hook/useAuth";
+import { signIn } from "next-auth/react";
 
 interface Props {
   setShowForm: Dispatch<SetStateAction<boolean>>;
@@ -27,7 +29,7 @@ interface Props {
 
 const common = "absolute transition-all cate-shadow";
 const liCommon =
-  "flex items-center gap-x-1 py-1 px-3 border-b transition hover:text-quaternary";
+  "flex items-center gap-x-1 py-1 px-3 border-b transition hover:text-quaternary w-[100px]";
 
 const CommentOptions: FC<Props> = ({
   setShowForm,
@@ -42,6 +44,7 @@ const CommentOptions: FC<Props> = ({
 }): JSX.Element => {
   const { show, setShow, innerRef } = useDropdown();
   const user = useAuth();
+  const [updatingLike, setUpdatingLike] = useState(false);
 
   const showEditFormHandler = () => {
     setShowForm(true);
@@ -95,33 +98,55 @@ const CommentOptions: FC<Props> = ({
           ? "You won't be able to revert this comment!"
           : "Bạn sẽ không thể khôi phục lại comment này!",
       icon: "warning",
+      iconColor: "#c9005b",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#c9005b",
+      cancelButtonColor: "#474747",
       confirmButtonText: locale === "en" ? "Yes, delete it!" : "Tôi chắc chắn",
       cancelButtonText: locale === "en" ? "Cancel" : "Hủy",
     }).then(async (result) => {
       if (result.isConfirmed) {
         await confirmDeleteHandler();
-        Swal.fire(
-          locale === "en" ? "Deleted!" : "Đã xóa",
-          locale === "en"
-            ? "Your comment has been deleted."
-            : "Comment của bạn đã được xóa thành công",
-          "success"
-        );
+        Swal.fire({
+          title: locale === "en" ? "Deleted!" : "Đã xóa",
+          text:
+            locale === "en"
+              ? "Your comment has been deleted."
+              : "Comment của bạn đã được xóa thành công",
+          confirmButtonColor: "#c9005b",
+          confirmButtonText: locale === "end" ? "Continue" : "Tiếp tục",
+          icon: "success",
+          iconColor: "#c9005b",
+        });
       }
     });
   };
 
   const likeCommentHandler = async () => {
     try {
+      setUpdatingLike(true);
       const { data } = await axios.post("/api/comment/update-like", {
         commentId: comment.id,
       });
       updateLikedComments(data.comment);
+      setUpdatingLike(false);
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        title: "Oops...",
+        text:
+          locale === "en"
+            ? "You have to login to like comment."
+            : "Bạn cần đăng nhập để like comment.",
+        icon: "error",
+        iconColor: "#c9005b",
+        confirmButtonColor: "#c9005b",
+        confirmButtonText: locale === "en" ? "Login" : "Đăng nhập",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          signIn("github");
+        }
+      });
     }
   };
 
@@ -155,6 +180,31 @@ const CommentOptions: FC<Props> = ({
 
     setComments([...updatedComments]);
   };
+
+  const LikeContent = (
+    <>
+      {comment.likedByOwner && !updatingLike && (
+        <>
+          <BreakHeart className="w-3 h-3" />
+          Unlike
+        </>
+      )}
+
+      {!comment.likedByOwner && !updatingLike && (
+        <>
+          <Heart className="w-3 h-3" />
+          Like
+        </>
+      )}
+
+      {updatingLike && (
+        <>
+          <Spinner className="animate-spin" />
+          Loading
+        </>
+      )}
+    </>
+  );
 
   return (
     <div
@@ -193,17 +243,7 @@ const CommentOptions: FC<Props> = ({
             className={`${liCommon} ml-[3px] gap-x-[6px] py-1 px-3 border-b-0`}
             onClick={likeCommentHandler}
           >
-            {comment.likedByOwner ? (
-              <>
-                <BreakHeart className="w-3 h-3" />
-                Unlike
-              </>
-            ) : (
-              <>
-                <Heart className="w-3 h-3" />
-                Like
-              </>
-            )}
+            {LikeContent}
           </li>
         </ul>
       ) : (
@@ -214,18 +254,9 @@ const CommentOptions: FC<Props> = ({
           }}
           className={`${common} right-[40px] -top-[3px] py-1 px-3 bg-white text-gray-700
           rounded flex items-center gap-1 hover:text-quaternary`}
+          onClick={likeCommentHandler}
         >
-          {comment.likedByOwner ? (
-            <>
-              <BreakHeart className="w-3 h-3" />
-              Unlike
-            </>
-          ) : (
-            <>
-              <Heart className="w-3 h-3" />
-              Like
-            </>
-          )}
+          {LikeContent}
         </div>
       )}
     </div>

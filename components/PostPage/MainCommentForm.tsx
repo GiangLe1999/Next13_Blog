@@ -1,6 +1,7 @@
 import { CommentResponse } from "@/types/collection";
 import axios from "axios";
 import { Dispatch, FC, SetStateAction, useState } from "react";
+import { Spinner } from "../Assets/Icons";
 
 interface Props {
   locale: string;
@@ -17,10 +18,12 @@ const MainCommentForm: FC<Props> = ({
   setComments,
 }): JSX.Element => {
   const [formContent, setFormContent] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   const commentSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      setSubmitting(true);
       const { data } = await axios.post("/api/comment/", {
         content: formContent,
         belongsTo: postId,
@@ -32,6 +35,7 @@ const MainCommentForm: FC<Props> = ({
         setComments && setComments([newComment]);
       }
       setFormContent("");
+      setSubmitting(false);
     } catch (error) {
       console.log(error);
     }
@@ -66,10 +70,17 @@ const MainCommentForm: FC<Props> = ({
     hover:border-quaternary w-full focus:border-white focus:!border-2 dark:focus:border-quaternary transition"
       />
 
-      <div className="text-right mt-4">
-        <button type="submit" className="post-btn rounded-3xl !w-44 !py-4">
-          {locale === "en" && "Submit comment"}
-          {locale === "vi" && "Gửi comment"}
+      <div className="flex justify-end mt-4">
+        <button type="submit" className="post-btn rounded-3xl !py-4">
+          {submitting && (
+            <Spinner className="animate-spin w-5 h-5 text-white" />
+          )}
+
+          {locale === "en" && !submitting && "Submit comment"}
+          {locale === "en" && submitting && "Submitting"}
+
+          {locale === "vi" && !submitting && "Gửi comment"}
+          {locale === "vi" && submitting && "Đang gửi"}
         </button>
       </div>
     </form>

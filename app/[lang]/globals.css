@@ -106,7 +106,7 @@ input {
 }
 
 .post-btn {
-  @apply uppercase rounded-md text-white py-4 px-1 w-full font-bold bg-gradient-to-r from-pink-600 to-pink-700 hover:scale-105 transition;
+  @apply flex gap-1 items-center justify-center uppercase rounded-md text-white py-4 px-1 w-full font-bold bg-gradient-to-r from-pink-600 to-pink-700 hover:scale-105 transition;
 }
 
 .post-section-title {

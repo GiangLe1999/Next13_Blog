@@ -18,7 +18,7 @@ const Footer: FC<Props> = ({ locale }): JSX.Element => {
     <div className="pt-8 pb-2 header-gradient dark:bg-none dark:bg-white-100 mt-10">
       <Container>
         <div className="">
-          <Logo />
+          <Logo locale={locale} />
         </div>
 
         <div className="mt-6">

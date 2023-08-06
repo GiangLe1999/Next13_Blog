@@ -29,7 +29,7 @@ const Navigation: FC<Props> = ({ locale }): JSX.Element => {
         <div className="w-full flex items-center justify-between">
           <div className="flex items-center space-x-16">
             {/* Logo */}
-            <Logo />
+            <Logo locale={locale} />
 
             {/* Nav links */}
             <NavLinks navDictionary={dictionary?.navigation} />

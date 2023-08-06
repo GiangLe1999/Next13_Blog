@@ -510,3 +510,34 @@ export const Spinner: FC<Props> = ({ className }): JSX.Element => {
     </svg>
   );
 };
+
+export const NoComments: FC<Props> = ({ className }): JSX.Element => {
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+    >
+      <path d="M15 4V3a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h1V6a2 2 0 0 1 2-2z"></path>
+      <path d="M17 5H6a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3.36l1.76 1.83a.5.5 0 0 0 .75 0L13.64 16H17a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"></path>
+    </svg>
+  );
+};
+
+export const Posts: FC<Props> = ({ className }): JSX.Element => {
+  return (
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      strokeWidth="0"
+      viewBox="0 0 24 24"
+      height="1em"
+      width="1em"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      <path fill="none" d="M0 0h24v24H0z"></path>
+      <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"></path>
+    </svg>
+  );
+};

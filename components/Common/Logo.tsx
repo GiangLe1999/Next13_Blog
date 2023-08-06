@@ -3,13 +3,15 @@ import { FC } from "react";
 import NextImage from "./NextImage";
 import siteConfig from "@/config/site";
 
-interface Props {}
+interface Props {
+  locale: string;
+}
 
-const Logo: FC<Props> = (props): JSX.Element => {
+const Logo: FC<Props> = ({ locale }): JSX.Element => {
   return (
     <Link
       className="flex items-center gap-2"
-      href={"/"}
+      href={"/" + locale}
       onClick={() => {
         window.scrollTo(0, 0);
       }}

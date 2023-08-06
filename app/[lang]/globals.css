@@ -113,6 +113,14 @@ input {
   @apply text-2xl dark:text-gray-800 text-white font-bold mb-4;
 }
 
+.empty-section-title {
+  @apply text-lg text-white dark:text-[#7c7c7c] font-bold;
+}
+
+.empty-section-subtitle {
+  @apply dark:text-[#7c7c7c] text-white text-sm font-bold;
+}
+
 .black-gradient {
   background: #000000; /* fallback for old browsers */
   background: -webkit-linear-gradient(

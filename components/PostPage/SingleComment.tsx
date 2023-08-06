@@ -3,7 +3,7 @@
 import { Dispatch, FC, SetStateAction, useState } from "react";
 import NextImage from "../Common/NextImage";
 import { CommentResponse } from "@/types/collection";
-import { formatDate } from "@/lib/helpers";
+import { countCommentLike, formatDate } from "@/lib/helpers";
 import CommentForm from "./CommentForm";
 import CommentOptions from "./CommentOptions";
 
@@ -81,7 +81,11 @@ const SingleComment: FC<Props> = ({
           {/* Button */}
           <div className="flex items-center justify-between">
             <p className="text-quaternary text-sm font-bold">
-              {comment.likes} people liked this comment
+              {countCommentLike(
+                locale,
+                comment.likes,
+                comment.likedByOwner || false
+              )}
             </p>
             <button
               className="post-btn rounded-3xl !w-28 !py-3"

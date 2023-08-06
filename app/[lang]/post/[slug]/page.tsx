@@ -97,7 +97,7 @@ const Page: NextPage<Props> = async ({ params }) => {
   };
 
   return (
-    <Container className="pt-[80px] space-y-16">
+    <Container className="pt-[50px] space-y-16">
       {/* Add JSON-LD */}
       <script
         type="application/ld+json"

@@ -2,6 +2,7 @@ import { CommentResponse } from "@/types/collection";
 import axios from "axios";
 import { Dispatch, FC, SetStateAction, useState } from "react";
 import { Spinner } from "../Assets/Icons";
+import LoginPopup from "../Common/LoginPopup";
 
 interface Props {
   locale: string;
@@ -37,6 +38,8 @@ const MainCommentForm: FC<Props> = ({
       setFormContent("");
       setSubmitting(false);
     } catch (error) {
+      setSubmitting(false);
+      LoginPopup(locale);
       console.log(error);
     }
   };

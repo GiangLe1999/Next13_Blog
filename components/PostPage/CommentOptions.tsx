@@ -14,6 +14,8 @@ import { CommentResponse } from "@/types/collection";
 import axios from "axios";
 import useAuth from "@/hook/useAuth";
 import { signIn } from "next-auth/react";
+import LoginPopup from "../Common/LoginPopup";
+import DeletePopup from "./DeletePopup";
 
 interface Props {
   setShowForm: Dispatch<SetStateAction<boolean>>;
@@ -91,35 +93,7 @@ const CommentOptions: FC<Props> = ({
   };
 
   const openModalHandler = () => {
-    Swal.fire({
-      title: locale === "en" ? "Are you sure?" : "Bạn chắc chắn chứ?",
-      text:
-        locale === "en"
-          ? "You won't be able to revert this comment!"
-          : "Bạn sẽ không thể khôi phục lại comment này!",
-      icon: "warning",
-      iconColor: "#c9005b",
-      showCancelButton: true,
-      confirmButtonColor: "#c9005b",
-      cancelButtonColor: "#474747",
-      confirmButtonText: locale === "en" ? "Yes, delete it!" : "Tôi chắc chắn",
-      cancelButtonText: locale === "en" ? "Cancel" : "Hủy",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        await confirmDeleteHandler();
-        Swal.fire({
-          title: locale === "en" ? "Deleted!" : "Đã xóa",
-          text:
-            locale === "en"
-              ? "Your comment has been deleted."
-              : "Comment của bạn đã được xóa thành công",
-          confirmButtonColor: "#c9005b",
-          confirmButtonText: locale === "end" ? "Continue" : "Tiếp tục",
-          icon: "success",
-          iconColor: "#c9005b",
-        });
-      }
-    });
+    DeletePopup(locale, confirmDeleteHandler);
   };
 
   const likeCommentHandler = async () => {
@@ -132,21 +106,8 @@ const CommentOptions: FC<Props> = ({
       setUpdatingLike(false);
     } catch (error) {
       console.log(error);
-      Swal.fire({
-        title: "Oops...",
-        text:
-          locale === "en"
-            ? "You have to login to like comment."
-            : "Bạn cần đăng nhập để like comment.",
-        icon: "error",
-        iconColor: "#c9005b",
-        confirmButtonColor: "#c9005b",
-        confirmButtonText: locale === "en" ? "Login" : "Đăng nhập",
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          signIn("github");
-        }
-      });
+      setUpdatingLike(false);
+      LoginPopup(locale);
     }
   };
 
@@ -224,7 +185,7 @@ const CommentOptions: FC<Props> = ({
         <ArrowUp className="w-5 h-5 z-50 transition-opacity rotate-90" />
       </div>
 
-      {user?.id === comment.owner.id ? (
+      {user?.id.toString() == comment.owner.id.toString() ? (
         <ul
           style={{
             transform: show ? "scale(1)" : "scale(0)",

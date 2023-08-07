@@ -10,9 +10,10 @@ import SectionWrapper from "../Common/SectionWrapper";
 
 interface Props {
   dictionary: { title: string; subTitle: string };
+  locale: string;
 }
 
-const Categories: FC<Props> = ({ dictionary }): JSX.Element => {
+const Categories: FC<Props> = ({ dictionary, locale }): JSX.Element => {
   return (
     <SectionWrapper idName="categories">
       <Title title={dictionary.title} subTitle={dictionary.subTitle} />
@@ -26,7 +27,7 @@ const Categories: FC<Props> = ({ dictionary }): JSX.Element => {
 
             <Link
               className="capitalize text-white font-medium dark:text-neutral-500"
-              href="/"
+              href={`/${locale}/${category.link}`}
             >
               {category.name}
             </Link>

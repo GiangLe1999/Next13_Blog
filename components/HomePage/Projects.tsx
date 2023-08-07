@@ -18,7 +18,7 @@ interface Props {
 
 const Projects: FC<Props> = ({ dictionary }): JSX.Element => {
   return (
-    <SectionWrapper isProjects idName="projects">
+    <SectionWrapper idName="projects">
       <Title subTitle={dictionary.subTitle} title={dictionary.title} />
 
       <div className="w-full flex">

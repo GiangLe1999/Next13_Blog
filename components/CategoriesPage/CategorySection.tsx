@@ -18,7 +18,7 @@ const CategorySection: FC<Props> = ({ category, locale }): JSX.Element => {
       variants={staggerContainer()}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.25 }}
+      viewport={{ once: true, amount: 0.05 }}
     >
       <Title
         title={category.title}

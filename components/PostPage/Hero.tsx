@@ -12,7 +12,7 @@ const Hero: FC<Props> = ({ post, locale }): JSX.Element => {
   return (
     <div>
       <PostMetas post={post} isPostPage locale={locale} />
-      <div className="w-full aspect-video lg:max-h-[500px] relative mt-6">
+      <div className="w-full aspect-video relative mt-6">
         <NextImage
           src={
             process.env.NEXT_PUBLIC_ASSETS_URL + post.image + "?key=optimised"

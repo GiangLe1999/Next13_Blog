@@ -5,7 +5,7 @@ import Comment from "@/model/comment";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
-  const user = await isAuth();
+  const user = (await isAuth()) as any;
 
   const { searchParams } = new URL(req.url);
   const belongsTo = searchParams.get("belongsTo");

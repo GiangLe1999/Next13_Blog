@@ -62,11 +62,11 @@ input {
 }
 
 .padding {
-  @apply sm:px-16 px-6 sm:py-16 py-10;
+  @apply sm:px-16 px-6 sm:pt-16 pt-10;
 }
 
 .heroHeadText {
-  @apply font-black text-white dark:text-neutral-600 lg:text-[54px] md:text-[30px] text-[25px] mb-2 lg:mb-0 mt-3 lg:mt-1;
+  @apply font-black text-white dark:text-neutral-600 md:text-[54px] text-[30px] mb-2 lg:mb-0 mt-3 lg:mt-1;
 }
 
 .heroSubText {
@@ -74,7 +74,7 @@ input {
 }
 
 .sectionHeadText {
-  @apply text-white uppercase dark:text-gray-600 font-black md:text-[40px] sm:text-[36px] xs:text-[32px] text-[30px];
+  @apply text-white uppercase dark:text-gray-600 font-black md:text-[40px] text-[30px];
 }
 
 .sectionSubText {
@@ -86,7 +86,7 @@ input {
 }
 
 .hash-span {
-  @apply -mt-[100px] pt-[100px] block;
+  @apply pt-[10px] block;
 }
 
 .header-gradient {
@@ -119,6 +119,10 @@ input {
 
 .empty-section-subtitle {
   @apply dark:text-[#7c7c7c] text-white text-sm font-bold;
+}
+
+.search-results-header {
+  @apply pl-4 flex items-center h-[45px] bg-quaternary text-white font-bold text-base;
 }
 
 .black-gradient {

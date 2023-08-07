@@ -96,48 +96,55 @@ interface Category {
   name: string;
   icon: StaticImageData;
   link: string;
+  color?: string;
 }
 
 const categories: Category[] = [
+  {
+    name: "JavaScript",
+    icon: javascript,
+    link: "javascript",
+    color: "#E1D354",
+  },
+  {
+    name: "React JS",
+    icon: reactjs,
+    link: "reactjs",
+    color: "#91D3ED",
+  },
+  {
+    name: "Next JS",
+    icon: nextjs,
+    link: "nextjs",
+    color: "#a0a0a0",
+  },
+  {
+    name: "Node JS",
+    icon: nodejs,
+    link: "nodejs",
+    color: "#026E00",
+  },
+  {
+    name: "CS50",
+    icon: cs50,
+    link: "cs50",
+    color: "#A51C30",
+  },
+  {
+    name: "MongoDB",
+    icon: mongodb,
+    link: "mongodb",
+    color: "#71A447",
+  },
   {
     name: "CSS 3",
     icon: css,
     link: "css",
   },
   {
-    name: "JavaScript",
-    icon: javascript,
-    link: "javascript",
-  },
-  {
-    name: "React JS",
-    icon: reactjs,
-    link: "reactjs",
-  },
-  {
-    name: "Next JS",
-    icon: nextjs,
-    link: "nextjs",
-  },
-  {
-    name: "Node JS",
-    icon: nodejs,
-    link: "nodejs",
-  },
-  {
-    name: "MongoDB",
-    icon: mongodb,
-    link: "mongodb",
-  },
-  {
     name: "git",
     icon: git,
     link: "git",
-  },
-  {
-    name: "CS50",
-    icon: cs50,
-    link: "cs50",
   },
   {
     name: "figma",

@@ -26,7 +26,7 @@ const PostCard: FC<Props> = ({
   const router = useRouter();
   return (
     <motion.div
-      variants={fadeIn("up", "spring", index * 0.5, 0.75)}
+      variants={fadeIn("up", "spring", index * 0.25, 0.5)}
       className={`${
         layout === "horizontal"
           ? "grid grid-cols-1 lg:grid-cols-2 items-center gap-5 lg:gap-10"

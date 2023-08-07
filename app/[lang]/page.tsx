@@ -26,7 +26,7 @@ const Page: NextPage<Props> = async ({ params }) => {
     <main
     // className="bg-hero-pattern bg-cover bg-no-repeat bg-center dark:bg-none"
     >
-      <Hero dictionary={dictionary.overall} />
+      <Hero dictionary={dictionary.overall} locale={locale} />
       <Categories dictionary={dictionary.categories} />
       <Posts posts={posts} locale={locale} dictionary={dictionary} />
       <Projects dictionary={dictionary.projects} />

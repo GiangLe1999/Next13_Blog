@@ -5,7 +5,6 @@ import Link from "next/link";
 
 import { categories } from "@/config/site";
 import BallCanvas from "./BallCanvas";
-import ScrollIcon from "../Common/ScrollIcon";
 import Title from "../Common/Title";
 import SectionWrapper from "../Common/SectionWrapper";
 
@@ -34,8 +33,6 @@ const Categories: FC<Props> = ({ dictionary }): JSX.Element => {
           </div>
         ))}
       </div>
-
-      <ScrollIcon idName="posts" className="bottom-10 left-16" />
     </SectionWrapper>
   );
 };

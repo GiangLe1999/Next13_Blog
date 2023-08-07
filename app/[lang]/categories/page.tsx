@@ -17,11 +17,11 @@ const Page: NextPage<Props> = async ({ params }) => {
   const categories = await getAllCategories(locale);
 
   return (
-    <Container className="pt-[120px] space-y-20">
+    <Container className="pt-[120px] space-y-14">
       <div>
         <Title
-          title="DANH MỤC"
-          subTitle="Phân loại"
+          title={locale === "en" ? "CATEGORIES" : "DANH MỤC"}
+          subTitle={locale === "en" ? "Categorize" : "Phân loại"}
           isCategory
           count={`${categories.length} ${
             locale === "en" ? "Categories" : "Danh mục"

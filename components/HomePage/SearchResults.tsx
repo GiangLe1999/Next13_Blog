@@ -34,7 +34,7 @@ const SearchResults: FC<Props> = ({
         <>
           <div className="search-results-header rounded-t-md">Results</div>
 
-          <div className="pt-0 px-4 pb-2">
+          <div>
             {results.map((result) => (
               <SearchResultItem
                 key={result.id}

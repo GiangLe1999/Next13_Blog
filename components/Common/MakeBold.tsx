@@ -5,7 +5,7 @@ export const makeBold = (item: string, keyword: string) => {
   if (matchArr?.length) {
     newStr = item.replace(
       re,
-      "<span style='font-weight:800; color:#ff0a78'>" + matchArr[0] + "</span>"
+      "<span style='font-weight:800;'>" + matchArr[0] + "</span>"
     );
   }
 

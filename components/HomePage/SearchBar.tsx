@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, useState, useEffect } from "react";
-import { Magnifier } from "../Assets/Icons";
+import { Magnifier, Spinner } from "../Assets/Icons";
 import axios from "axios";
 import { Post } from "@/types/collection";
 import SearchResults from "./SearchResults";
@@ -18,7 +18,7 @@ const SearchBar: FC<Props> = ({ locale }): JSX.Element => {
 
   useEffect(() => {
     const timerId = setTimeout(async () => {
-      if (query.length > 0) {
+      if (query.length >= 2) {
         setLoading(true);
         const { data } = await axios(
           `/api/search?query=${query}&locale=${locale}&limit=5`
@@ -60,7 +60,11 @@ const SearchBar: FC<Props> = ({ locale }): JSX.Element => {
         type="submit"
         className="w-14 h-full grid place-items-center bg-quaternary cursor-pointer rounded-r-md"
       >
-        <Magnifier className="text-white w-6 h-6" />
+        {loading ? (
+          <Spinner className="text-white w-6 h-6 animate-spin" />
+        ) : (
+          <Magnifier className="text-white w-6 h-6" />
+        )}
       </button>
     </form>
   );

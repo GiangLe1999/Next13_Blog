@@ -24,12 +24,7 @@ const CategoryTags: FC<Props> = ({ locale }): JSX.Element => {
             key={index}
           >
             <div className="relative w-5 h-5">
-              <NextImage
-                src={category.icon}
-                alt={category.name}
-                isContain
-                priority
-              />
+              <NextImage src={category.icon} alt={category.name} priority />
             </div>
             {category.name}
           </Link>

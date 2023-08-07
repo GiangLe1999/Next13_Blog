@@ -46,7 +46,7 @@ const SearchBar: FC<Props> = ({ locale }): JSX.Element => {
             ? "Search for all articles (e.g. CS50, ReactJS)"
             : "Tìm kiếm bài viết (v.d CS50, ReactJS)"
         }
-        // onBlur={() => setShowSearchResults(false)}
+        onBlur={() => setShowSearchResults(false)}
         onFocus={() => setShowSearchResults(true)}
       />
       <SearchResults

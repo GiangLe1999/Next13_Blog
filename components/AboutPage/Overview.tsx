@@ -2,7 +2,6 @@ import { FC } from "react";
 
 import { services } from "@/config/site";
 import ServiceCard from "./ServiceCard";
-import ScrollIcon from "../Common/ScrollIcon";
 import SectionWrapper from "../Common/SectionWrapper";
 import Subtitle from "../Common/Subtitle";
 import Title from "../Common/Title";
@@ -31,8 +30,6 @@ const Overview: FC<Props> = async ({ locale }) => {
             <ServiceCard key={index} index={index} service={service} />
           ))}
         </div>
-
-        <ScrollIcon idName="experience" className="top-0 right-0" />
       </div>
     </SectionWrapper>
   );

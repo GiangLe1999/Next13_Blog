@@ -9,7 +9,7 @@ interface Props {
   post: Post;
   isPostPage?: Boolean;
   locale: string;
-  reverse: boolean;
+  reverse?: boolean;
 }
 
 const PostMetas: FC<Props> = ({

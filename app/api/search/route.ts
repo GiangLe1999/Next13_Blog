@@ -26,17 +26,15 @@ export async function GET(req: Request) {
         title: { _icontains: query },
       },
       fields: [
-        "title",
-        "description",
-        "slug",
-        "translations.title",
-        "translations.description",
-        "author",
+        "*",
+        "translations.*",
         "author.first_name",
         "author.last_name",
-        "date_updated",
+        "category",
+        "category.title",
+        "category.color",
       ],
-      limit: Number(limit) || 5,
+      limit: Number(limit) || undefined,
     });
 
     let postsData;

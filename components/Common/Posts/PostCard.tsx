@@ -29,9 +29,9 @@ const PostCard: FC<Props> = ({
       variants={fadeIn("up", "spring", index * 0.25, 0.5)}
       className={`${
         layout === "horizontal"
-          ? "grid grid-cols-1 lg:grid-cols-2 items-center gap-5 lg:gap-10"
+          ? "grid grid-cols-1 lg:grid-cols-2 items-center gap-5 lg:gap-10 border"
           : "space-y-5"
-      }  group cursor-pointer`}
+      }  group cursor-pointer shadow-md rounded-md overflow-hidden`}
       onClick={() => router.push(`/${locale}/post/${post.slug}`)}
     >
       {/* Post image */}
@@ -45,12 +45,11 @@ const PostCard: FC<Props> = ({
             process.env.NEXT_PUBLIC_ASSETS_URL + post.image + "?key=optimised"
           }
           alt={post.title}
-          className="rounded-md"
         />
       </div>
 
       {/* Tag & Title & Description */}
-      <PostMetas post={post} locale={locale} />
+      <PostMetas post={post} locale={locale} reverse={reverse} />
     </motion.div>
   );
 };

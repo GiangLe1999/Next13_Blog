@@ -4,6 +4,7 @@ import { ArrowDown, ArrowUp } from "@/components/Assets/Icons";
 import NextImage from "@/components/Common/NextImage";
 import useDropdown from "@/hook/useDropdown";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { FC } from "react";
 
 interface Props {
@@ -16,10 +17,19 @@ const LangSwitcher: FC<Props> = ({ locale }): JSX.Element => {
   // Nhận về pathName hiện tại (Đã sử dụng Hook thì LangSwitcher sẽ thành Client Component)
   const targetLanguage = locale === "en" ? "vi" : "en";
   const { pathName, show, setShow, innerRef } = useDropdown();
+
+  const searchParams = useSearchParams();
+  const query = searchParams.get("search") as string;
+
   const redirectTaget = () => {
     if (!pathName) return "/";
     const segments = pathName.split("/");
     segments[1] = targetLanguage;
+
+    if (query) {
+      return segments.join("/") + "?search=" + query;
+    }
+
     return segments.join("/");
   };
 

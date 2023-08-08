@@ -1,9 +1,11 @@
+"use client";
+
 import { Post } from "@/types/collection";
-import Link from "next/link";
 import { FC } from "react";
 import { makeBold } from "../Common/MakeBold";
 import { NewTab2 } from "../Assets/Icons";
 import { formatDate } from "@/lib/helpers";
+import { useRouter } from "next/navigation";
 
 interface Props {
   result: Post;
@@ -16,10 +18,11 @@ const SearchResultItem: FC<Props> = ({
   locale,
   query,
 }): JSX.Element => {
+  const router = useRouter();
   return (
-    <Link
-      href={`/${locale}/post/${result.slug}`}
-      className="p-4 border-b flex flex-col space-y-2 group hover:dark:bg-slate-50 hover:bg-[#2b2b2b]"
+    <div
+      onMouseDown={() => router.push(`/${locale}/post/${result.slug}`)}
+      className="p-4 border-b flex flex-col space-y-2 group hover:dark:bg-slate-50 hover:bg-[#2b2b2b] cursor-pointer"
     >
       <div className="flex justify-between gap-1">
         <h4
@@ -51,7 +54,7 @@ const SearchResultItem: FC<Props> = ({
         <div className="post-dot" />
         <p>{result.author.first_name + " " + result.author.last_name}</p>
       </div>
-    </Link>
+    </div>
   );
 };
 

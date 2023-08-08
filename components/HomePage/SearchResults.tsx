@@ -1,7 +1,9 @@
+"use client";
+
 import { Post } from "@/types/collection";
-import Link from "next/link";
 import { FC } from "react";
 import SearchResultItem from "./SearchResultItem";
+import { useRouter } from "next/navigation";
 
 interface Props {
   results: Post[];
@@ -18,6 +20,8 @@ const SearchResults: FC<Props> = ({
   loading,
   locale,
 }): JSX.Element => {
+  const router = useRouter();
+
   return (
     <div
       className="absolute w-full top-[60px] left-0 dark:bg-white header-gradient dark:bg-none
@@ -45,12 +49,12 @@ const SearchResults: FC<Props> = ({
             ))}
           </div>
 
-          <Link
-            href={`/browse?search=${query}`}
-            className="search-results-header rounded-b-md hover:underline"
+          <div
+            onMouseDown={() => router.push(`/${locale}/browse?search=${query}`)}
+            className="search-results-header rounded-b-md hover:underline cursor-pointer"
           >
             See all results
-          </Link>
+          </div>
         </>
       )}
     </div>

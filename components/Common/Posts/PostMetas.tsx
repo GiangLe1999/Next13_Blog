@@ -9,11 +9,17 @@ interface Props {
   post: Post;
   isPostPage?: Boolean;
   locale: string;
+  reverse: boolean;
 }
 
-const PostMetas: FC<Props> = ({ post, isPostPage, locale }): JSX.Element => {
+const PostMetas: FC<Props> = ({
+  post,
+  isPostPage,
+  locale,
+  reverse = false,
+}): JSX.Element => {
   return (
-    <div className="space-y-2">
+    <div className={`space-y-2 ${reverse ? "pl-7" : "px-4 py-0 pb-7"} `}>
       {/* Tags */}
       <div className="flex flex-wrap items-center gap-2 text-xs xs:text-sm text-neutral-500">
         <div className="font-bold" style={{ color: post.category.color }}>

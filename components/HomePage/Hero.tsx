@@ -27,7 +27,11 @@ const Hero: FC<Props> = ({ dictionary, locale }): JSX.Element => {
 
         <div className="lg:flex-1 w-full">
           <div className="relative w-full h-[450px]">
-            <NextImageContain src="/assets/hero.svg" alt="Hero banner" />
+            <NextImageContain
+              src="/assets/hero.svg"
+              alt="Hero banner"
+              priority
+            />
           </div>
         </div>
       </div>

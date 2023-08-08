@@ -23,7 +23,7 @@ const RelatedPostCard: FC<Props> = ({ post, locale }): JSX.Element => {
       </div>
 
       <div className="p-5 space-y-3">
-        <h4 className="text-lg font-bold dark:text-gray-800 text-white h-14">
+        <h4 className="text-lg font-bold dark:text-gray-800 text-white">
           {post.title}
         </h4>
         <p className="text-sm text-white">

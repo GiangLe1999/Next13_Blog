@@ -20,7 +20,7 @@ const RelatedPosts: FC<Props> = async ({ locale, postId, categoryId }) => {
             ? "Check out these related posts"
             : "Bài viết liên quan"}
         </h3>
-        <div className="grid grid-cols-3 gap-x-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10">
           {relatedPosts?.map((post, index) => (
             <RelatedPostCard post={post} key={index} locale={locale} />
           ))}

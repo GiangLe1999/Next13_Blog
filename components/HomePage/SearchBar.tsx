@@ -1,10 +1,12 @@
 "use client";
 
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, FormEvent } from "react";
 import { Magnifier, Spinner } from "../Assets/Icons";
 import axios from "axios";
 import { Post } from "@/types/collection";
 import SearchResults from "./SearchResults";
+import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 interface Props {
   locale: string;
@@ -15,6 +17,7 @@ const SearchBar: FC<Props> = ({ locale }): JSX.Element => {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<Post[]>([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const timerId = setTimeout(async () => {
@@ -33,8 +36,27 @@ const SearchBar: FC<Props> = ({ locale }): JSX.Element => {
     };
   }, [query, locale]);
 
+  const submitHandler = (e: FormEvent) => {
+    e.preventDefault();
+    if (query.length >= 2) {
+      router.push(`/${locale}/browse?search=${query}`);
+    } else {
+      Swal.fire({
+        title: "Oops...",
+        text:
+          locale === "en"
+            ? "Please enter a search string at least 2 characters long.."
+            : "Vui lòng nhập ít nhất 2 kí tự để thực hiện tìm kiếm",
+        confirmButtonColor: "#c9005b",
+        confirmButtonText: locale === "end" ? "Continue" : "Tiếp tục",
+        icon: "warning",
+        iconColor: "#c9005b",
+      });
+    }
+  };
+
   return (
-    <form className="flex items-center h-14 relative">
+    <form className="flex items-center h-14 relative" onSubmit={submitHandler}>
       <input
         onChange={(e) => setQuery(e.target.value)}
         value={query}
